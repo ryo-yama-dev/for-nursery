@@ -18,6 +18,7 @@ dependencies = [
     "pylint>=2.17.3",
     "mdformat-gfm>=0.3.5",
     "isort>=5.12.0",
+    "psycopg2-binary>=2.9.6",
 ]
 requires-python = ">=3.11"
 license = {text = "MIT"}
