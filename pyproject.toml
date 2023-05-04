@@ -1,0 +1,12 @@
+[tool.pdm]
+
+[project]
+name = "for-nursery"
+version = "0.1"
+description = ""
+authors = []
+dependencies = [
+    "Cython>=0.29.34",
+]
+requires-python = ">=3.11"
+license = {text = "MIT"}
