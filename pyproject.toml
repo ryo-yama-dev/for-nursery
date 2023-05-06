@@ -34,3 +34,4 @@ isort = "isort ."
 black = "black src"
 mdformat = "mdformat ."
 format = {composite = ["isort", "black", "mdformat"]}
+seed = "src/common/utils/seed.py"
