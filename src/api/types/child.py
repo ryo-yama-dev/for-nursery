@@ -10,6 +10,7 @@ class Child:
     """
     園児
     """
+
     id: strawberry.auto
     name: strawberry.auto
     age: strawberry.auto

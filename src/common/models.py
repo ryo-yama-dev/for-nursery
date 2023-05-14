@@ -10,7 +10,16 @@ postgres_password = os.environ.get("POSTGRES_PASSWORD")
 postgres_host = os.environ.get("POSTGRES_HOST")
 postgres_port = os.environ.get("POSTGRES_PORT")
 
-__all__ = [ "Job", "Classroom", "Child", "Employee", "Profile", "ChildRecord", "EmployeeRecord" ]
+__all__ = [
+    "Job",
+    "Classroom",
+    "Child",
+    "Employee",
+    "Profile",
+    "ChildRecord",
+    "EmployeeRecord",
+]
+
 
 class Job(SQLModel, table=True):
     """
