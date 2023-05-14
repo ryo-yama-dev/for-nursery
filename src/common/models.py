@@ -10,6 +10,7 @@ postgres_password = os.environ.get("POSTGRES_PASSWORD")
 postgres_host = os.environ.get("POSTGRES_HOST")
 postgres_port = os.environ.get("POSTGRES_PORT")
 
+__all__ = [ "Job", "Classroom", "Child", "Employee", "Profile", "ChildRecord", "EmployeeRecord" ]
 
 class Job(SQLModel, table=True):
     """
@@ -101,5 +102,3 @@ class EmployeeRecord(SQLModel, table=True):
 postgre_url = f"postgresql://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/postgres"
 
 engine = create_engine(url=postgre_url, echo=True)
-
-# SQLModel.metadata.create_all(engine)

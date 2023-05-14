@@ -446,7 +446,7 @@ dependencies = [
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.176.3"
+version = "0.177.1"
 requires_python = ">=3.7,<4.0"
 summary = "A library for creating GraphQL APIs"
 dependencies = [
@@ -457,14 +457,14 @@ dependencies = [
 
 [[package]]
 name = "strawberry-graphql"
-version = "0.176.3"
+version = "0.177.1"
 extras = ["fastapi"]
 requires_python = ">=3.7,<4.0"
 summary = "A library for creating GraphQL APIs"
 dependencies = [
     "fastapi>=0.65.2",
     "python-multipart<0.0.7,>=0.0.5",
-    "strawberry-graphql==0.176.3",
+    "strawberry-graphql==0.177.1",
 ]
 
 [[package]]
@@ -548,7 +548,7 @@ summary = "Module for decorators, wrappers and monkey patching."
 [metadata]
 lock_version = "4.2"
 groups = ["default"]
-content_hash = "sha256:890ea70f9198368804bcf65885f24e739f1c3d518bcafae52838b449306ea5d3"
+content_hash = "sha256:c262c8c28dc27c4d80ddf0215ddcdbb2bd2bfd80e979bdba61c74b0e44e07a20"
 
 [metadata.files]
 "anyio 3.6.2" = [
@@ -1174,9 +1174,9 @@ content_hash = "sha256:890ea70f9198368804bcf65885f24e739f1c3d518bcafae52838b4493
     {url = "https://files.pythonhosted.org/packages/41/1b/bad9124b400334d48aed1e04799032909fd8f1ca4a8e0eb30841284dd489/stevedore-5.0.0-py3-none-any.whl", hash = "sha256:bd5a71ff5e5e5f5ea983880e4a1dd1bb47f8feebbb3d95b592398e2f02194771"},
     {url = "https://files.pythonhosted.org/packages/f1/25/993d09dc7be3e7927228853c75324104d734bb784bd766b025ebf9f47b16/stevedore-5.0.0.tar.gz", hash = "sha256:2c428d2338976279e8eb2196f7a94910960d9f7ba2f41f3988511e95ca447021"},
 ]
-"strawberry-graphql 0.176.3" = [
-    {url = "https://files.pythonhosted.org/packages/1c/95/1d532e74d8a794733319c12b27d9c8ffc14485b18fbab9fadefb930c5897/strawberry_graphql-0.176.3.tar.gz", hash = "sha256:423dc7f5cbad1fd672dc1b7ae6c79cd13956c1677f12c98a755b7edc4470c5c1"},
-    {url = "https://files.pythonhosted.org/packages/56/a2/81b7d53d73ae6e7d5460f56ed365bd467af62ea0dcf66e68a9a3d2c05315/strawberry_graphql-0.176.3-py3-none-any.whl", hash = "sha256:3266b9429a700ec53535bd0b483d977bc589f0a2ab19b82d796b49e9ee650a7c"},
+"strawberry-graphql 0.177.1" = [
+    {url = "https://files.pythonhosted.org/packages/48/06/10668caddb0d9a4d6040fa34778a6e499a223aeecea669278d21824f0c63/strawberry_graphql-0.177.1.tar.gz", hash = "sha256:87e8638cc3f87dfb59bd28a22ba0c2dbbf382c078fec7831cee47a3ce761586a"},
+    {url = "https://files.pythonhosted.org/packages/4d/06/3f436c1d92b919b4c5886a138de930d38b497b27ad328aacb498ff3e3d50/strawberry_graphql-0.177.1-py3-none-any.whl", hash = "sha256:5f97a28603ca5b2b139cbe1d906f6b2fc6f677b74ec5509caee6de7e8c5760bb"},
 ]
 "tomlkit 0.11.8" = [
     {url = "https://files.pythonhosted.org/packages/10/37/dd53019ccb72ef7d73fff0bee9e20b16faff9658b47913a35d79e89978af/tomlkit-0.11.8.tar.gz", hash = "sha256:9330fc7faa1db67b541b28e62018c17d20be733177d290a13b24c62d1614e0c3"},
