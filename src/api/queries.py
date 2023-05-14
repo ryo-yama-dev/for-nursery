@@ -1,8 +1,10 @@
 import strawberry
-from sqlmodel import Session, select
+from sqlmodel import Session
 
+from common.models import engine
+
+from .repositories import *
 from .types import *
-from common.models import Job as JobModel, engine
 
 
 @strawberry.type
@@ -10,8 +12,19 @@ class Query:
     @strawberry.field
     def jobs(self) -> list[Job | None]:
         with Session(engine) as session:
-            statement = select(JobModel)
-            results = session.exec(statement)
-            # return [Job(row) for row in results.all()]
-            return results.all()
+            return JobRepository(session).get_all()
 
+    @strawberry.field
+    def employees(self) -> list[Employee | None]:
+        with Session(engine) as session:
+            return EmployeeRepository(session).get_all()
+
+    @strawberry.field
+    def children(self) -> list[Child | None]:
+        with Session(engine) as session:
+            return ChildRepository(session).get_all()
+
+    @strawberry.field
+    def classrooms(self) -> list[Classroom | None]:
+        with Session(engine) as session:
+            return ClassroomRepository(session).get_all()

@@ -2,7 +2,7 @@ from sqlmodel import Session, select
 
 from common.models import Employee
 
-__all__ = ["Employee"]
+__all__ = ["EmployeeRepository"]
 
 
 class EmployeeRepository:

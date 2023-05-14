@@ -11,6 +11,7 @@ postgres_host = os.environ.get("POSTGRES_HOST")
 postgres_port = os.environ.get("POSTGRES_PORT")
 
 __all__ = [
+    "engine",
     "Job",
     "Classroom",
     "Child",
