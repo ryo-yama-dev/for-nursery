@@ -71,7 +71,7 @@ max-line-length = 88
 [tool.pdm.scripts]
 dev = "uvicorn src.main:app --reload --port 8080"
 server = "gunicorn src.main:app -w 4 -k uvicorn.workers.UvicornWorker"
-lint = "flake8 src"
+lint = "pflake8 src"
 isort = "isort ."
 black = "black src"
 mdformat = "mdformat ."

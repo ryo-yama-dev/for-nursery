@@ -1,114 +1,191 @@
 import datetime
 import os
+import re
 
 from dotenv import load_dotenv
-from sqlmodel import Field, SQLModel, create_engine
+from sqlalchemy import (
+    Boolean,
+    Date,
+    DateTime,
+    ForeignKey,
+    Integer,
+    PrimaryKeyConstraint,
+    String,
+    Time,
+    create_engine,
+    func,
+)
+from sqlalchemy.orm import (
+    DeclarativeBase,
+    Mapped,
+    MappedAsDataclass,
+    declared_attr,
+    mapped_column,
+    relationship,
+)
 
 load_dotenv()
 postgres_user = os.environ.get("POSTGRES_USER")
 postgres_password = os.environ.get("POSTGRES_PASSWORD")
+user_password = f"{postgres_user}:{postgres_password}"
 postgres_host = os.environ.get("POSTGRES_HOST")
 postgres_port = os.environ.get("POSTGRES_PORT")
+host_port = f"{postgres_host}:{postgres_port}"
 
 __all__ = [
     "engine",
-    "Job",
-    "Classroom",
-    "Child",
-    "Employee",
-    "Profile",
-    "ChildRecord",
-    "EmployeeRecord",
+    "JobModel",
+    "ClassroomModel",
+    "ChildModel",
+    "EmployeeModel",
+    "ProfileModel",
+    "ChildRecordModel",
+    "EmployeeRecordModel",
 ]
 
 
-class Job(SQLModel, table=True):
+def pascal_to_snake_tablename(tablename: str) -> str:
+    """
+    パスカルケースのモデル名をスネークケースに変換し、末尾の"Model"を除外する
+    ※実際の DB のテーブル物理名がスネークケースであることが前提
+    """
+
+    blocks = [
+        block.group(0).lower() for block in re.finditer(r"[A-Za-z][^A-Z]+", tablename)
+    ]
+    blocks.pop()
+    if len(blocks) > 1:
+        result = blocks.pop(0)
+        for block in blocks:
+            result += f"_{block}"
+        return result
+    return blocks[0]
+
+
+class Base(DeclarativeBase, MappedAsDataclass):
+    """
+    全 Model の基底クラス
+    """
+
+    @declared_attr.directive
+    def __tablename__(cls) -> str:
+        """
+        クラス名から "Model" を除外してスネークケースの tablename に
+        """
+
+        return pascal_to_snake_tablename(cls.__name__)
+
+    id: Mapped[int] = mapped_column(
+        Integer, primary_key=True, unique=True, nullable=False, init=False
+    )
+
+
+class TimestampMixin:
+    """
+    タイムスタンプのクラス
+    """
+
+    created_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime(True), server_default=func.current_timestamp(), nullable=False
+    )
+    updated_at: Mapped[datetime.datetime] = mapped_column(
+        DateTime(True), server_default=func.current_timestamp(), nullable=False
+    )
+
+
+class JobModel(Base, TimestampMixin):
     """
     職種・職級
     """
 
-    id: int | None = Field(default=None, primary_key=True)
-    name: str = Field(unique=True, description="職種名")
-    rank: int = Field(unique=True, description="職級")
+    name: Mapped[str] = mapped_column(String, nullable=False, description="職種名")
+    rank: Mapped[int] = mapped_column(Integer, nullable=False, description="職級")
 
 
-class Child(SQLModel, table=True):
+class ChildModel(Base, TimestampMixin):
     """
     園児
     """
 
-    id: int | None = Field(default=None, unique=True, primary_key=True, description="")
-    name: str = Field(description="氏名")
-    age: int = Field(description="年齢")
-    sex: str = Field(description="性別")
-    phone: str = Field(description="連絡先電話番号")
-    address: str = Field(description="連絡先住所")
-    parent: str = Field(description="保護者")
+    name: Mapped[str] = mapped_column(String, description="氏名")
+    age: Mapped[int] = mapped_column(Integer, description="年齢")
+    sex: Mapped[str] = mapped_column(String, description="性別")
+    phone: Mapped[str] = mapped_column(String, description="連絡先電話番号")
+    address: Mapped[str] = mapped_column(String, description="連絡先住所")
+    parent: Mapped[str] = mapped_column(String, description="保護者")
 
 
-class Employee(SQLModel, table=True):
+class EmployeeModel(Base, TimestampMixin):
     """
     従業員
     """
 
-    id: int | None = Field(default=None, primary_key=True, unique=True, description="")
-    auth_id: str | None = Field(default=None, description="認証ID")
-    name: str = Field(description="氏名")
-    belong: bool = Field(description="在職中か否か")
-    jobs: list[int] = Field(description="職種")
+    __table_args__ = (PrimaryKeyConstraint("id", name="employee_pkey"),)
+
+    name: Mapped[str] = mapped_column(String, description="氏名")
+    belong: Mapped[bool] = mapped_column(Boolean, description="在職中か否か")
+    # TODO: 単独に変える
+    jobs: Mapped[list[int]] = mapped_column(description="職種")
+    job_id: Mapped[int] = mapped_column(Integer, ForeignKey("job.id"))
+    job: Mapped[JobModel] = relationship(
+        JobModel, back_populates="employee", default=None
+    )
+    auth_id: Mapped[str] = mapped_column(default=None, description="認証ID")
 
 
-class Profile(SQLModel, table=True):
+class ProfileModel(Base):
     """
     固有プロフィール
     """
 
-    id: int | None = Field(default=None, primary_key=True, unique=True, description="")
-    person_id: int = Field(description="紐づけられているEmployeeもしくはChildのID")
-    headline: str = Field(description="見出し")
-    letter: str | None = Field(description="本文")
+    person_id: Mapped[int] = mapped_column(
+        Integer, description="紐づけられているEmployeeもしくはChildのID"
+    )
+    headline: Mapped[str] = mapped_column(String, description="見出し")
+    letter: Mapped[str | None] = mapped_column(String, description="本文")
 
 
-class Classroom(SQLModel, table=True):
+class ClassroomModel(Base):
     """
     クラス
     """
 
-    id: int | None = Field(default=None, primary_key=True, unique=True, description="")
-    name: str = Field(unique=True, description="組名")
-    age: int = Field(description="年齢")
-    employees: list[int] = Field(description="担当従業員")
-    children: list[int] = Field(description="所属園児")
+    name: Mapped[str] = mapped_column(String, unique=True, description="組名")
+    age: Mapped[int] = mapped_column(Integer, description="年齢")
+    employees: Mapped[list[int]] = mapped_column(description="担当従業員")
+    children: Mapped[list[int]] = mapped_column(description="所属園児")
 
 
-class ChildRecord(SQLModel, table=True):
+class ChildRecordModel(Base):
     """
     園児記録
     """
 
-    id: int | None = Field(default=None, primary_key=True, description="")
-    child_id: int | None = Field(description="園児", foreign_key="child.id")
-    date: datetime.date = Field(description="日付")
-    attend_time: datetime.time = Field(description="登園時間")
-    leave_time: datetime.time = Field(description="退園時間")
-    edited: bool = Field(default=False, description="編集済みか否か")
-    note: str | None = Field(description="備考")
+    child_id: Mapped[int | None] = mapped_column(
+        Integer, description="園児", foreign_key="child.id"
+    )
+    date: Mapped[datetime.date] = mapped_column(Date, description="日付")
+    attend_time: Mapped[datetime.time] = mapped_column(Time, description="登園時間")
+    leave_time: Mapped[datetime.time] = mapped_column(Time, description="退園時間")
+    note: Mapped[str | None] = mapped_column(String, description="備考")
+    edited: Mapped[bool] = mapped_column(Boolean, default=False, description="編集済みか否か")
 
 
-class EmployeeRecord(SQLModel, table=True):
+class EmployeeRecordModel(Base):
     """
     従業員記録
     """
 
-    id: int | None = Field(default=None, primary_key=True, description="")
-    employee_id: int | None = Field(description="従業員", foreign_key="employee.id")
-    date: datetime.date = Field(description="日付")
-    attend_time: datetime.time = Field(description="出勤時間")
-    leave_time: datetime.time = Field(description="退勤時間")
-    edited: bool = Field(default=False, description="編集済みか否か")
-    note: str | None = Field(description="備考")
+    employee_id: Mapped[int] | None = mapped_column(
+        Integer, description="従業員", foreign_key="employee.id"
+    )
+    date: Mapped[datetime.date] = mapped_column(Date, description="日付")
+    attend_time: Mapped[datetime.time] = mapped_column(Time, description="出勤時間")
+    leave_time: Mapped[datetime.time] = mapped_column(Time, description="退勤時間")
+    note: Mapped[str | None] = mapped_column(String, description="備考")
+    edited: Mapped[bool] = mapped_column(Boolean, default=False, description="編集済みか否か")
 
 
-postgre_url = f"postgresql://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/postgres"
+postgre_url = f"postgresql+psycopg://{user_password}@{host_port}/postgres"
 
-engine = create_engine(url=postgre_url, echo=True)
+engine = create_engine(postgre_url)

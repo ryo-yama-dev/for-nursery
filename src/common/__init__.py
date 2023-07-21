@@ -1,4 +1,9 @@
-from . import models
-from .models import *
+from .models import Base, ChildModel, ClassroomModel, EmployeeModel, JobModel
 
-__all__ = list(models.__all__)
+__all__ = [
+    "JobModel",
+    "ChildModel",
+    "EmployeeModel",
+    "ClassroomModel",
+    "Base",
+]
