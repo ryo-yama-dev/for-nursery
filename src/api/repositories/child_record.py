@@ -1,6 +1,7 @@
-from sqlmodel import Session, select
+from sqlalchemy import ScalarResult, select
+from sqlalchemy.orm import Session
 
-from common.models import ChildRecord
+from common.models import ChildRecordModel
 
 __all__ = ["ChildRecordRepository"]
 
@@ -9,5 +10,6 @@ class ChildRecordRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all(self) -> list[ChildRecord]:
-        return self.session.exec(select(ChildRecord)).all()
+    def get_all(self) -> ScalarResult[ChildRecordModel]:
+        stmt = select(ChildRecordModel)
+        return self.session.scalars(stmt)

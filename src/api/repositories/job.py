@@ -1,6 +1,7 @@
-from sqlmodel import Session, select
+from sqlalchemy import ScalarResult, select
+from sqlalchemy.orm import Session
 
-from common.models import Job
+from common.models import JobModel
 
 __all__ = ["JobRepository"]
 
@@ -9,5 +10,6 @@ class JobRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all(self) -> list[Job]:
-        return self.session.exec(select(Job)).all()
+    def get_all(self) -> ScalarResult[JobModel]:
+        stmt = select(JobModel)
+        return self.session.scalars(stmt)
