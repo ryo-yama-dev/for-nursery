@@ -1,7 +1,11 @@
-from . import child, classroom, employee, job
-from .child import *
-from .classroom import *
-from .employee import *
-from .job import *
+from .child import Child
+from .classroom import Classroom
+from .employee import Employee
+from .job import Job
 
-__all__ = list(child.__all__ + classroom.__all__ + employee.__all__ + list(job.__all__))
+__all__ = [
+    "Classroom",
+    "Child",
+    "Employee",
+    "Job",
+]
