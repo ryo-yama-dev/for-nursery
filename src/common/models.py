@@ -19,9 +19,11 @@ from sqlalchemy.orm import (
     DeclarativeBase,
     Mapped,
     MappedAsDataclass,
+    Session,
     declared_attr,
     mapped_column,
     relationship,
+    sessionmaker,
 )
 
 load_dotenv()
@@ -34,6 +36,7 @@ host_port = f"{postgres_host}:{postgres_port}"
 
 __all__ = [
     "engine",
+    "create_session",
     "JobModel",
     "ClassroomModel",
     "ChildModel",
@@ -189,3 +192,15 @@ class EmployeeRecordModel(Base):
 postgre_url = f"postgresql+psycopg://{user_password}@{host_port}/postgres"
 
 engine = create_engine(postgre_url)
+
+
+def create_session() -> Session:
+    """
+    セッションを作成
+    """
+    engine = create_engine(f"postgresql+psycopg://{user_password}@{host_port}/postgres")
+    return sessionmaker(
+        bind=engine,
+        autocommit=False,
+        autoflush=False,
+    )()

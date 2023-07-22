@@ -1,30 +1,29 @@
 import strawberry
-from sqlmodel import Session
 
-from common.models import engine
+from common.models import create_session
 
-from .repositories import *
-from .types import *
+from .services import ChildService, ClassroomService, EmployeeService, JobService
+from .types import Child, Classroom, Employee, Job
 
 
 @strawberry.type
 class Query:
     @strawberry.field
-    def jobs(self) -> list[Job | None]:
-        with Session(engine) as session:
-            return JobRepository(session).get_all()
+    def jobs(self) -> list[Job]:
+        with create_session() as session:
+            return JobService(session).get_all()
 
     @strawberry.field
-    def employees(self) -> list[Employee | None]:
-        with Session(engine) as session:
-            return EmployeeRepository(session).get_all()
+    def employees(self) -> list[Employee]:
+        with create_session() as session:
+            return EmployeeService(session).get_all()
 
     @strawberry.field
-    def children(self) -> list[Child | None]:
-        with Session(engine) as session:
-            return ChildRepository(session).get_all()
+    def children(self) -> list[Child]:
+        with create_session() as session:
+            return ChildService(session).get_all()
 
     @strawberry.field
-    def classrooms(self) -> list[Classroom | None]:
-        with Session(engine) as session:
-            return ClassroomRepository(session).get_all()
+    def classrooms(self) -> list[Classroom]:
+        with create_session() as session:
+            return ClassroomService(session).get_all()
