@@ -409,6 +409,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "pydantic-settings"
+version = "2.0.2"
+requires_python = ">=3.7"
+summary = "Settings management using Pydantic"
+dependencies = [
+    "pydantic>=2.0.1",
+    "python-dotenv>=0.21.0",
+]
+
+[[package]]
 name = "pyflakes"
 version = "3.0.1"
 requires_python = ">=3.6"
@@ -636,7 +646,7 @@ summary = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
 lock_version = "4.2"
 cross_platform = true
 groups = ["default", "dev", "lint", "test"]
-content_hash = "sha256:a26bdd9ee99aa18fa3c0823c757691c10beaa1cf5eaf7c184bfde94b2a1373a0"
+content_hash = "sha256:fb06f368c97bf08b02face0b935d98eeccec08b80003e2acee0caebf8bbb5894"
 
 [metadata.files]
 "annotated-types 0.5.0" = [
@@ -1167,6 +1177,10 @@ content_hash = "sha256:a26bdd9ee99aa18fa3c0823c757691c10beaa1cf5eaf7c184bfde94b2
     {url = "https://files.pythonhosted.org/packages/f6/ce/29732ae567ec070ac2a56ff05684fb09a8189d8929ab589f3545e4dcfd41/pydantic_core-2.1.2-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:87cff210af3258ca0c829e3ebc849d7981bfde23a99d6cb7a3c17a163b3dbad2"},
     {url = "https://files.pythonhosted.org/packages/fc/dd/ad4af88dc902e227bde43878487c0deafbb5d72fa6b8bb6480ee0a3e37ad/pydantic_core-2.1.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0be2e2812a43205728a06c9d0fd090432cd76a9bb5bff2bfcfdf8b0e27d51851"},
     {url = "https://files.pythonhosted.org/packages/fe/83/45780d6424dbf64800497ce694b9b09d588f6c50de9c9c6c189169adbb61/pydantic_core-2.1.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f0eb54b11cd4fe0c6404611eef77086ade03eb1457e92910bbb4f3479efa3f79"},
+]
+"pydantic-settings 2.0.2" = [
+    {url = "https://files.pythonhosted.org/packages/9c/3e/3311eeab406db6116e7f2d4ed9b05c2811282143efa55feb12cc513a8b84/pydantic_settings-2.0.2-py3-none-any.whl", hash = "sha256:6183a2abeab465d5a3ab69758e9a22d38b0cc2ba193f0b85f6971a252ea630f6"},
+    {url = "https://files.pythonhosted.org/packages/c7/bc/2ab68f8159ee87bd7ee2924fdc4ecea901ff48e4216f745d937f5c3f2fd5/pydantic_settings-2.0.2.tar.gz", hash = "sha256:342337fff50b23585e807a86dec85037900972364435c55c2fc00d16ff080539"},
 ]
 "pyflakes 3.0.1" = [
     {url = "https://files.pythonhosted.org/packages/af/4c/b1c7008aa7788b3e26c06c60aa18da7d3aa1f00e344aa3f18ac92768854b/pyflakes-3.0.1-py2.py3-none-any.whl", hash = "sha256:ec55bf7fe21fff7f1ad2f7da62363d749e2a470500eab1b555334b67aa1ef8cf"},
