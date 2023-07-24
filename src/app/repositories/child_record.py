@@ -1,7 +1,7 @@
 from sqlalchemy import ScalarResult, select
 from sqlalchemy.orm import Session
 
-from common.models import ChildRecordModel
+from app.common.models import ChildRecordModel
 
 __all__ = ["ChildRecordRepository"]
 

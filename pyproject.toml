@@ -70,11 +70,11 @@ profile = "black"
 max-line-length = 88
 
 [tool.pdm.scripts]
-dev = "uvicorn src.main:app --reload --port 8080"
-server = "gunicorn src.main:app -w 4 -k uvicorn.workers.UvicornWorker"
+dev = "uvicorn src.app.main:app --reload --port 8080"
+server = "gunicorn src.app.main:app -w 4 -k uvicorn.workers.UvicornWorker"
 lint = "pflake8 src"
 isort = "isort ."
 black = "black src"
 mdformat = "mdformat ."
-format = {composite = ["isort", "black", "mdformat"]}
-seed = "src/common/utils/seed.py"
+format = {composite = ["black", "isort", "mdformat"]}
+seed = "src/app/common/utils/seed.py"

@@ -4,8 +4,8 @@ from faker import Faker
 from sqlalchemy import create_engine, insert
 from sqlalchemy.orm import sessionmaker
 
-from common.config import get_settings
-from common.models import Base, JobModel
+from app.common.config import get_settings
+from app.common.models import Base, JobModel
 
 postgres_user = os.environ.get("POSTGRES_USER")
 postgres_password = os.environ.get("POSTGRES_PASSWORD")
