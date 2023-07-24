@@ -1,5 +1,5 @@
-from api.repositories import ChildRepository
-from api.types import Child
+from app.repositories import ChildRepository
+from app.types import Child
 
 from .base import BaseService
 

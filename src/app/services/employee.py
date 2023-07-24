@@ -1,5 +1,5 @@
-from api.repositories import EmployeeRepository
-from api.types import Employee
+from app.repositories import EmployeeRepository
+from app.types import Employee
 
 from .base import BaseService
 

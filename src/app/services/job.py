@@ -1,5 +1,5 @@
-from api.repositories import JobRepository
-from api.types import Job
+from app.repositories import JobRepository
+from app.types import Job
 
 from .base import BaseService
 

@@ -1,5 +1,5 @@
-from api.repositories import ClassroomRepository
-from api.types import Classroom
+from app.repositories import ClassroomRepository
+from app.types import Classroom
 
 from .base import BaseService
 
