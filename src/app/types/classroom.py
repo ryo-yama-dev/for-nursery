@@ -9,6 +9,6 @@ class Classroom:
     教室
     """
 
-    id: strawberry.auto
-    name: strawberry.auto
+    id: int
+    name: str
     # TODO: add more fields
