@@ -1,9 +1,8 @@
 import strawberry
 
 from app.database import create_session
-
-from .services import ChildService, ClassroomService, EmployeeService, JobService
-from .types import Child, Classroom, Employee, Job
+from app.services import ChildService, ClassroomService, EmployeeService, JobService
+from app.types import Child, Classroom, Employee, Job
 
 
 @strawberry.type
