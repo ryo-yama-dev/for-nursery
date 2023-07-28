@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, insert
 from sqlalchemy.orm import sessionmaker
 
 from app.common.config import get_settings
-from app.common.models import (
+from app.database.models import (
     Base,
     ChildModel,
     ChildRecordModel,

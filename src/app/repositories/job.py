@@ -1,7 +1,7 @@
 from sqlalchemy import ScalarResult, select
 from sqlalchemy.orm import Session
 
-from app.common.models import JobModel
+from app.database import JobModel
 
 __all__ = ["JobRepository"]
 

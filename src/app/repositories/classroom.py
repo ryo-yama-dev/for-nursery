@@ -1,7 +1,7 @@
 from sqlalchemy import ScalarResult, select
 from sqlalchemy.orm import Session
 
-from app.common.models import ClassroomModel
+from app.database import ClassroomModel
 
 __all__ = ["ClassroomRepository"]
 

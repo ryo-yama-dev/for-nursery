@@ -1,6 +1,6 @@
 import strawberry
 
-from app.common.models import create_session
+from app.database import create_session
 
 from .services import ChildService, ClassroomService, EmployeeService, JobService
 from .types import Child, Classroom, Employee, Job
