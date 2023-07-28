@@ -33,6 +33,7 @@ user_password = f"{postgres_user}:{postgres_password}"
 postgres_host = os.environ.get("POSTGRES_HOST")
 postgres_port = os.environ.get("POSTGRES_PORT")
 host_port = f"{postgres_host}:{postgres_port}"
+engine = create_engine(f"postgresql+psycopg://{user_password}@{host_port}/postgres")
 
 __all__ = [
     "engine",
@@ -44,6 +45,8 @@ __all__ = [
     "ProfileModel",
     "ChildRecordModel",
     "EmployeeRecordModel",
+    "SexEnum",
+    "Record",
 ]
 
 
@@ -130,7 +133,7 @@ class ChildModel(Base, TimestampMixin):
     phone: Mapped[str] = mapped_column(String, comment="連絡先電話番号")
     address: Mapped[str] = mapped_column(String, comment="連絡先住所")
     parent: Mapped[str] = mapped_column(String, comment="保護者")
-    classroom_id: Mapped[int] = mapped_column(
+    classroom_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("classroom.id"), comment="教室", default=None
     )
     classroom: Mapped["ClassroomModel"] = relationship(
@@ -150,6 +153,7 @@ class EmployeeModel(Base, TimestampMixin):
 
     name: Mapped[str] = mapped_column(String, comment="氏名")
     belong: Mapped[bool] = mapped_column(Boolean, comment="在職中か否か")
+    sex: Mapped[SexEnum]
     job_id: Mapped[int] = mapped_column(Integer, ForeignKey("job.id"))
     job: Mapped[JobModel] = relationship(
         "JobModel", back_populates="employees", default=None
@@ -157,8 +161,8 @@ class EmployeeModel(Base, TimestampMixin):
     profiles: Mapped[list["ProfileModel"]] = relationship(
         "ProfileModel", back_populates="employee", default=None
     )
-    auth_id: Mapped[str] = mapped_column(default=None, comment="認証ID")
-    classroom_id: Mapped[int] = mapped_column(
+    auth_id: Mapped[str | None] = mapped_column(String, default=None, comment="認証ID")
+    classroom_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("classroom.id"), comment="教室", default=None
     )
     classroom: Mapped["ClassroomModel"] = relationship(
@@ -259,7 +263,7 @@ def create_session() -> Session:
     """
     セッションを作成
     """
-    engine = create_engine(f"postgresql+psycopg://{user_password}@{host_port}/postgres")
+
     return sessionmaker(
         bind=engine,
         autocommit=False,

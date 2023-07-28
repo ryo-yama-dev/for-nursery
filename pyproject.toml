@@ -78,3 +78,4 @@ black = "black src"
 mdformat = "mdformat ."
 format = {composite = ["black", "isort", "mdformat"]}
 seed = "src/app/common/utils/seed.py"
+# seed = "python -c 'from src.app.common.utils.seed import seed; seed()'"
