@@ -1,9 +1,12 @@
 import strawberry
 
+from .child import Child
+from .employee import Employee
+
 __all__ = ["Classroom"]
 
 
-@strawberry.type
+@strawberry.type(description="子供組")
 class Classroom:
     """
     教室
@@ -11,4 +14,6 @@ class Classroom:
 
     id: int
     name: str
-    # TODO: add more fields
+    age: int
+    children: list[Child]
+    employees: list[Employee]

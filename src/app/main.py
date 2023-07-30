@@ -6,7 +6,7 @@ from app.schema import schema
 app = FastAPI()
 
 
-graphql_app = GraphQL(schema)  # type: ignore
+graphql_app = GraphQL(schema)
 
 app.add_route("/graphql", graphql_app)
 app.add_websocket_route("/graphql", graphql_app)

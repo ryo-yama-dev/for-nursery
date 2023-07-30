@@ -1,11 +1,14 @@
-from .child import Child
+from .child import Child, ChildRecord
 from .classroom import Classroom
-from .employee import Employee
+from .employee import Employee, EmployeeRecord, Profile
 from .job import Job
 
 __all__ = [
     "Classroom",
     "Child",
+    "ChildRecord",
     "Employee",
+    "EmployeeRecord",
+    "Profile",
     "Job",
 ]

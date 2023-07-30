@@ -1,10 +1,12 @@
 import strawberry
 
-__all__ = ["Child"]
+from .interaces import Record, Sex, Timestamp
+
+__all__ = ["Child", "ChildRecord"]
 
 
-@strawberry.type
-class Child:
+@strawberry.type(description="園児")
+class Child(Timestamp):
     """
     園児
     """
@@ -12,7 +14,16 @@ class Child:
     id: int
     name: str
     age: int
-    sex: str
+    sex: Sex
     phone: str
     address: str
-    parent: int
+    parent: str
+
+
+@strawberry.type(description="登退園記録")
+class ChildRecord(Record):
+    """
+    登退園記録
+    """
+
+    child: Child

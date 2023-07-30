@@ -40,7 +40,8 @@ test = [
 [tool.mypy]
 plugins = [
   "pydantic.mypy",
-  "sqlalchemy.ext.mypy.plugin"
+  "sqlalchemy.ext.mypy.plugin",
+  "strawberry.ext.mypy_plugin"
 ]
 
 follow_imports = "silent"

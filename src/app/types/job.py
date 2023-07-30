@@ -1,10 +1,12 @@
 import strawberry
 
+from .interaces import Timestamp
+
 __all__ = ["Job"]
 
 
-@strawberry.type
-class Job:
+@strawberry.type(description="職級")
+class Job(Timestamp):
     """
     職種
     """
