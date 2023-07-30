@@ -83,7 +83,7 @@
 
 ### 職級操作
 
-- [ ] job_create
+- [x] job_create
 - [ ] job_update
 - [ ] job_delete
 
