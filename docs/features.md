@@ -46,11 +46,6 @@
 
 ## Query
 
-### 管理者取得
-
-- [ ] manager
-- [ ] managers
-
 ### 従業員取得
 
 - [ ] employee
@@ -64,7 +59,7 @@
 ### 園児取得
 
 - [ ] child
-- [ ] childs
+- [ ] children
 
 ### 集金情報取得
 
@@ -85,12 +80,6 @@
 - [ ] childs_monthly
 
 ## Mutation
-
-### 管理者操作
-
-- [ ] manager_create
-- [ ] manager_update
-- [ ] manager_delete
 
 ### 職級操作
 
