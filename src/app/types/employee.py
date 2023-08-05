@@ -29,8 +29,10 @@ class Employee(Timestamp):
     name: str
     sex: Sex
     belong: bool
+    job_id: int
     job: Job
     profiles: list[Profile]
+    classroom_id: int | None
 
 
 @strawberry.type(description="従業員記録")

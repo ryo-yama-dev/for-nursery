@@ -9,6 +9,6 @@ __all__ = ["ChildService"]
 class ChildService(BaseService):
     def find_all(self) -> list[Child]:
         return [
-            Child(**child.__dict__)
+            Child(**child.to_dict())
             for child in ChildRepository(self.session).find_all()
         ]

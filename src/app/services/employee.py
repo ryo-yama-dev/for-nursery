@@ -1,5 +1,5 @@
 from app.repositories import EmployeeRepository
-from app.types import Employee
+from app.types import Employee, Job, Profile
 
 from .base import BaseService
 
@@ -11,6 +11,10 @@ class EmployeeService(BaseService):
 
     def find_all(self) -> list[Employee]:
         return [
-            Employee(**employee.__dict__)
+            Employee(
+                **employee.to_dict(),
+                job=Job(**employee.job.to_dict()),
+                profiles=[Profile(**prof.to_dict()) for prof in employee.profiles],
+            )
             for employee in EmployeeRepository(self.session).find_all()
         ]

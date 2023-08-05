@@ -1,7 +1,9 @@
+import copy
 import datetime
 import os
 import re
 from enum import Enum
+from typing import Any
 
 from dotenv import load_dotenv
 from sqlalchemy import (
@@ -84,6 +86,14 @@ class Base(DeclarativeBase, MappedAsDataclass):
     id: Mapped[int] = mapped_column(
         Integer, primary_key=True, unique=True, nullable=False, init=False
     )
+
+    def to_dict(self) -> dict[str, Any]:
+        """
+       _sa_instance_state を削除した上でデータクラスを辞書に変換する
+        """
+        cp_dict = copy.deepcopy(self.__dict__)
+        cp_dict.pop("_sa_instance_state", None)
+        return cp_dict
 
 
 class TimestampMixin:

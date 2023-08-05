@@ -25,5 +25,4 @@ class JobRepository:
             insert(JobModel).values(name=name, rank=rank).returning(JobModel)
         )
         self.session.commit()
-        print("test", job)
         return job.scalar_one()
