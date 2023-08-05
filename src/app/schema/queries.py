@@ -10,19 +10,19 @@ class Query:
     @strawberry.field
     def jobs(self) -> list[Job]:
         with create_session() as session:
-            return JobService(session).get_all()
+            return JobService(session).find_all()
 
     @strawberry.field
     def employees(self) -> list[Employee]:
         with create_session() as session:
-            return EmployeeService(session).get_all()
+            return EmployeeService(session).find_all()
 
     @strawberry.field
     def children(self) -> list[Child]:
         with create_session() as session:
-            return ChildService(session).get_all()
+            return ChildService(session).find_all()
 
     @strawberry.field
     def classrooms(self) -> list[Classroom]:
         with create_session() as session:
-            return ClassroomService(session).get_all()
+            return ClassroomService(session).find_all()

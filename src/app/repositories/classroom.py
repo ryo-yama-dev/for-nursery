@@ -10,6 +10,6 @@ class ClassroomRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all(self) -> ScalarResult[ClassroomModel]:
+    def find_all(self) -> ScalarResult[ClassroomModel]:
         stmt = select(ClassroomModel)
         return self.session.scalars(stmt)

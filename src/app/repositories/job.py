@@ -10,7 +10,7 @@ class JobRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all(self) -> ScalarResult[JobModel]:
+    def find_all(self) -> ScalarResult[JobModel]:
         """
         職種・職級を全取得
         """

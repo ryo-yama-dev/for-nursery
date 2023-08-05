@@ -10,6 +10,6 @@ class ChildRecordRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all(self) -> ScalarResult[ChildRecordModel]:
+    def find_all(self) -> ScalarResult[ChildRecordModel]:
         stmt = select(ChildRecordModel)
         return self.session.scalars(stmt)

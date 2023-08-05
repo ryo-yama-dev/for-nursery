@@ -9,8 +9,8 @@ __all__ = ["EmployeeService"]
 class EmployeeService(BaseService):
     """ """
 
-    def get_all(self) -> list[Employee]:
+    def find_all(self) -> list[Employee]:
         return [
             Employee(**employee.__dict__)
-            for employee in EmployeeRepository(self.session).get_all()
+            for employee in EmployeeRepository(self.session).find_all()
         ]

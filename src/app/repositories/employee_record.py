@@ -10,6 +10,6 @@ class EmployeeRecordRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all(self) -> ScalarResult[EmployeeRecordModel]:
+    def find_all(self) -> ScalarResult[EmployeeRecordModel]:
         stmt = select(EmployeeRecordModel)
         return self.session.scalars(stmt)
