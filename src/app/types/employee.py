@@ -1,6 +1,6 @@
 import strawberry
 
-from .interaces import Record, Sex, Timestamp
+from .interaces import Record, Timestamp
 from .job import Job
 
 __all__ = ["Employee", "EmployeeRecord"]
@@ -27,7 +27,7 @@ class Employee(Timestamp):
     id: int
     auth_id: str | None
     name: str
-    sex: Sex
+    sex: str
     belong: bool
     job_id: int
     job: Job

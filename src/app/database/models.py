@@ -2,7 +2,6 @@ import copy
 import datetime
 import os
 import re
-from enum import Enum
 from typing import Any
 
 from dotenv import load_dotenv
@@ -47,7 +46,6 @@ __all__ = [
     "ProfileModel",
     "ChildRecordModel",
     "EmployeeRecordModel",
-    "SexEnum",
     "Record",
 ]
 
@@ -109,15 +107,6 @@ class TimestampMixin:
     )
 
 
-class SexEnum(Enum):
-    """
-    性別
-    """
-
-    MALE = "男性"
-    FEMALE = "女性"
-
-
 class JobModel(Base, TimestampMixin):
     """
     職種・職級
@@ -139,7 +128,7 @@ class ChildModel(Base, TimestampMixin):
 
     name: Mapped[str] = mapped_column(String, comment="氏名")
     age: Mapped[int] = mapped_column(Integer, comment="年齢")
-    sex: Mapped[SexEnum]
+    sex: Mapped[str]
     phone: Mapped[str] = mapped_column(String, comment="連絡先電話番号")
     address: Mapped[str] = mapped_column(String, comment="連絡先住所")
     parent: Mapped[str] = mapped_column(String, comment="保護者")
@@ -163,7 +152,7 @@ class EmployeeModel(Base, TimestampMixin):
 
     name: Mapped[str] = mapped_column(String, comment="氏名")
     belong: Mapped[bool] = mapped_column(Boolean, comment="在職中か否か")
-    sex: Mapped[SexEnum]
+    sex: Mapped[str]
     job_id: Mapped[int] = mapped_column(Integer, ForeignKey("job.id"))
     job: Mapped[JobModel] = relationship(
         "JobModel", back_populates="employees", default=None

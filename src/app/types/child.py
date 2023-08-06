@@ -1,6 +1,6 @@
 import strawberry
 
-from .interaces import Record, Sex, Timestamp
+from .interaces import Record, Timestamp
 
 __all__ = ["Child", "ChildRecord"]
 
@@ -14,7 +14,7 @@ class Child(Timestamp):
     id: int
     name: str
     age: int
-    sex: Sex
+    sex: str
     phone: str
     address: str
     parent: str

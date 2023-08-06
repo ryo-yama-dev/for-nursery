@@ -3,8 +3,6 @@ from enum import Enum
 
 import strawberry
 
-from app.database.models import SexEnum
-
 __all__ = ["Record", "Sex", "Timestamp"]
 
 
@@ -24,8 +22,8 @@ class Record:
 
 @strawberry.enum(description="性別")
 class Sex(Enum):
-    MALE = SexEnum.MALE
-    FEMALE = SexEnum.FEMALE
+    MALE = "MALE"
+    FEMALE = "FEMALE"
 
 
 @strawberry.interface(description="タイムスタンプ")

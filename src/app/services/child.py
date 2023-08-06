@@ -1,3 +1,6 @@
+import strawberry
+
+from app.inputs import ChildCreateInput
 from app.repositories import ChildRepository
 from app.types import Child
 
@@ -16,3 +19,7 @@ class ChildService(BaseService):
     def find_one(self, id: int) -> Child | None:
         child = ChildRepository(self.session).find_by_id(id=id)
         return Child(**child.to_dict()) if child else None
+
+    def create(self, input: ChildCreateInput) -> Child:
+        child = ChildRepository(self.session).create(strawberry.asdict(input))
+        return Child(**child.to_dict())
