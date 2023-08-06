@@ -13,3 +13,8 @@ class ClassroomRepository:
     def find_all(self) -> ScalarResult[ClassroomModel]:
         stmt = select(ClassroomModel)
         return self.session.scalars(stmt)
+
+    def find_by_id(self, id: int) -> ClassroomModel | None:
+        return self.session.scalar(
+            select(ClassroomModel).where(ClassroomModel.id == id)
+        )

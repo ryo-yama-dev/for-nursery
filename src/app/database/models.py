@@ -89,7 +89,7 @@ class Base(DeclarativeBase, MappedAsDataclass):
 
     def to_dict(self) -> dict[str, Any]:
         """
-       _sa_instance_state を削除した上でデータクラスを辞書に変換する
+        _sa_instance_state を削除した上でデータクラスを辞書に変換する
         """
         cp_dict = copy.deepcopy(self.__dict__)
         cp_dict.pop("_sa_instance_state", None)

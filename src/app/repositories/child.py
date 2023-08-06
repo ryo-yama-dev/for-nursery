@@ -13,3 +13,6 @@ class ChildRepository:
     def find_all(self) -> ScalarResult[ChildModel]:
         stmt = select(ChildModel)
         return self.session.scalars(stmt)
+
+    def find_by_id(self, id: int) -> ChildModel | None:
+        return self.session.scalar(select(ChildModel).where(ChildModel.id == id))

@@ -13,3 +13,6 @@ class EmployeeRepository:
     def find_all(self) -> ScalarResult[EmployeeModel]:
         stmt = select(EmployeeModel)
         return self.session.scalars(stmt)
+
+    def find_by_id(self, id: int) -> EmployeeModel | None:
+        return self.session.scalar(select(EmployeeModel).where(EmployeeModel.id == id))

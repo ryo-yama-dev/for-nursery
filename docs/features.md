@@ -48,18 +48,22 @@
 
 ### 従業員取得
 
-- [ ] employee
-- [ ] employees
+- [x] employee
+- [x] employees
 
 ### 職級取得
 
-- [ ] job
-- [ ] jobs
+- [x] jobs
 
 ### 園児取得
 
-- [ ] child
-- [ ] children
+- [x] child
+- [x] children
+
+### 子供部屋情報取得
+
+- [x] classroom
+- [x] classrooms
 
 ### 集金情報取得
 
