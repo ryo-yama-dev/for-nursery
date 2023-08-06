@@ -97,6 +97,12 @@
 - [ ] employee_update
 - [ ] employee_delete
 
+### 園児データ操作
+
+- [x] child_create
+- [ ] child_update
+- [ ] child_delete
+
 ### 出退勤登録
 
 - [ ] employee_daily_insert
