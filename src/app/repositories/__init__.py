@@ -1,4 +1,4 @@
-from .base import BaseRepository
+from .base import BaseRepository, RepositoryError, repository_error_handler
 from .child import ChildRepository
 from .child_record import ChildRecordRepository
 from .classroom import ClassroomRepository
@@ -8,6 +8,8 @@ from .job import JobRepository
 
 __all__ = [
     "BaseRepository",
+    "RepositoryError",
+    "repository_error_handler",
     "ChildRepository",
     "ChildRecordRepository",
     "ClassroomRepository",
