@@ -18,7 +18,7 @@ class Child(Timestamp):
     phone: str
     address: str
     parent: str
-    classroom_id: int | None
+    classroom_id: int | None = None
 
 
 @strawberry.type(description="登退園記録")

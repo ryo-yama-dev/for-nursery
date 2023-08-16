@@ -13,7 +13,6 @@ class Profile:
     """
 
     id: int
-    order: int
     headline: str
     letter: str
 
@@ -25,14 +24,14 @@ class Employee(Timestamp):
     """
 
     id: int
-    auth_id: str | None
+    auth_id: str | None = None
     name: str
     sex: str
     belong: bool
     job_id: int
     job: Job
-    profiles: list[Profile]
-    classroom_id: int | None
+    profiles: list[Profile] | None = None
+    classroom_id: int | None = None
 
 
 @strawberry.type(description="従業員記録")

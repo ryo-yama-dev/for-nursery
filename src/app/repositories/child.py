@@ -2,6 +2,7 @@ from typing import Any
 
 from sqlalchemy import ScalarResult, insert, select
 
+from app.common import dict_exclude_none
 from app.database import ChildModel
 from app.repositories import BaseRepository
 
@@ -24,11 +25,7 @@ class ChildRepository(BaseRepository):
         self,
         kwargs: dict[str, Any] = {},
     ) -> ChildModel:
-        input: dict[str, Any] = {}
-        for key, value in kwargs.items():
-            if value is not None:
-                input[key] = value
-        print("create", input)
+        input: dict[str, Any] = dict_exclude_none(kwargs)
         child = self.session.execute(
             insert(ChildModel).values(**input).returning(ChildModel)
         )

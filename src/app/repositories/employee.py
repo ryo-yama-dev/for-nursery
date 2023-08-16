@@ -1,5 +1,8 @@
-from sqlalchemy import ScalarResult, select
+from typing import Any
 
+from sqlalchemy import ScalarResult, insert, select
+
+from app.common import dict_exclude_none
 from app.database import EmployeeModel
 from app.repositories import BaseRepository
 
@@ -17,3 +20,15 @@ class EmployeeRepository(BaseRepository):
 
     def find_by_id(self, id: int) -> EmployeeModel | None:
         return self.session.scalar(select(EmployeeModel).where(EmployeeModel.id == id))
+
+    def create(
+        self,
+        kwargs: dict[str, Any] = {},
+    ) -> EmployeeModel:
+        input: dict[str, Any] = dict_exclude_none(kwargs)
+        print("create", input)
+        employee = self.session.execute(
+            insert(EmployeeModel).values(**input).returning(EmployeeModel)
+        )
+        self.session.commit()
+        return employee.scalar_one()
