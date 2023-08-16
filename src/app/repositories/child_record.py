@@ -1,14 +1,15 @@
 from sqlalchemy import ScalarResult, select
-from sqlalchemy.orm import Session
 
 from app.database import ChildRecordModel
+from app.repositories import BaseRepository
 
 __all__ = ["ChildRecordRepository"]
 
 
-class ChildRecordRepository:
-    def __init__(self, session: Session):
-        self.session = session
+class ChildRecordRepository(BaseRepository):
+    """
+    園児記録
+    """
 
     def find_all(self) -> ScalarResult[ChildRecordModel]:
         stmt = select(ChildRecordModel)

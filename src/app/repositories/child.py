@@ -1,16 +1,17 @@
 from typing import Any
 
 from sqlalchemy import ScalarResult, insert, select
-from sqlalchemy.orm import Session
 
 from app.database import ChildModel
+from app.repositories import BaseRepository
 
 __all__ = ["ChildRepository"]
 
 
-class ChildRepository:
-    def __init__(self, session: Session):
-        self.session = session
+class ChildRepository(BaseRepository):
+    """
+    園児
+    """
 
     def find_all(self) -> ScalarResult[ChildModel]:
         stmt = select(ChildModel)

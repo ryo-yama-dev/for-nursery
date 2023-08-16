@@ -1,14 +1,15 @@
 from sqlalchemy import ScalarResult, select
-from sqlalchemy.orm import Session
 
 from app.database import ClassroomModel
+from app.repositories import BaseRepository
 
 __all__ = ["ClassroomRepository"]
 
 
-class ClassroomRepository:
-    def __init__(self, session: Session):
-        self.session = session
+class ClassroomRepository(BaseRepository):
+    """
+    クラス
+    """
 
     def find_all(self) -> ScalarResult[ClassroomModel]:
         stmt = select(ClassroomModel)

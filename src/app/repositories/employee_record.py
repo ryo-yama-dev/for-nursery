@@ -1,14 +1,15 @@
 from sqlalchemy import ScalarResult, select
-from sqlalchemy.orm import Session
 
 from app.database import EmployeeRecordModel
+from app.repositories import BaseRepository
 
 __all__ = ["EmployeeRecordRepository"]
 
 
-class EmployeeRecordRepository:
-    def __init__(self, session: Session):
-        self.session = session
+class EmployeeRecordRepository(BaseRepository):
+    """
+    従業員記録
+    """
 
     def find_all(self) -> ScalarResult[EmployeeRecordModel]:
         stmt = select(EmployeeRecordModel)

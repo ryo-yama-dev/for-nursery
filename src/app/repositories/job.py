@@ -1,14 +1,15 @@
 from sqlalchemy import ScalarResult, insert, select
-from sqlalchemy.orm import Session
 
 from app.database import JobModel
+from app.repositories import BaseRepository
 
 __all__ = ["JobRepository"]
 
 
-class JobRepository:
-    def __init__(self, session: Session):
-        self.session = session
+class JobRepository(BaseRepository):
+    """
+    職種
+    """
 
     def find_all(self) -> ScalarResult[JobModel]:
         """
