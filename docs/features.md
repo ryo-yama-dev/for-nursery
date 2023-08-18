@@ -93,7 +93,7 @@
 
 ### 従業員データ操作
 
-- [ ] employee_create
+- [x] employee_create
 - [ ] employee_update
 - [ ] employee_delete
 
@@ -102,6 +102,12 @@
 - [x] child_create
 - [ ] child_update
 - [ ] child_delete
+
+### 子供部屋データ操作
+
+- [x] classroom_create
+- [ ] classroom_update
+- [ ] classroom_delete
 
 ### 出退勤登録
 

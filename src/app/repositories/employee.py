@@ -26,7 +26,6 @@ class EmployeeRepository(BaseRepository):
         kwargs: dict[str, Any] = {},
     ) -> EmployeeModel:
         input: dict[str, Any] = dict_exclude_none(kwargs)
-        print("create", input)
         employee = self.session.execute(
             insert(EmployeeModel).values(**input).returning(EmployeeModel)
         )

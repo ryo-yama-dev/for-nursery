@@ -1,5 +1,8 @@
-from sqlalchemy import ScalarResult, select
+from typing import Any
 
+from sqlalchemy import ScalarResult, insert, select
+
+from app.common import dict_exclude_none
 from app.database import ClassroomModel
 from app.repositories import BaseRepository
 
@@ -19,3 +22,14 @@ class ClassroomRepository(BaseRepository):
         return self.session.scalar(
             select(ClassroomModel).where(ClassroomModel.id == id)
         )
+
+    def create(
+        self,
+        kwargs: dict[str, Any] = {},
+    ) -> ClassroomModel:
+        input: dict[str, Any] = dict_exclude_none(kwargs)
+        classroom = self.session.execute(
+            insert(ClassroomModel).values(**input).returning(ClassroomModel)
+        )
+        self.session.commit()
+        return classroom.scalar_one()

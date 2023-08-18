@@ -1,9 +1,14 @@
 import strawberry
 
 from app.database import create_session
-from app.inputs import ChildCreateInput, EmployeeCreateInput, JobCreateInput
-from app.services import ChildService, EmployeeService, JobService
-from app.types import Child, Employee, Job
+from app.inputs import (
+    ChildCreateInput,
+    ClassroomCreateInput,
+    EmployeeCreateInput,
+    JobCreateInput,
+)
+from app.services import ChildService, ClassroomService, EmployeeService, JobService
+from app.types import Child, Classroom, Employee, Job
 
 
 @strawberry.type
@@ -26,3 +31,8 @@ class Mutation:
     def employee_create(self, input: EmployeeCreateInput) -> Employee:
         with create_session() as session:
             return EmployeeService(session).create(input)
+
+    @strawberry.mutation
+    def classroom_create(self, input: ClassroomCreateInput) -> Classroom:
+        with create_session() as session:
+            return ClassroomService(session).create(input)
