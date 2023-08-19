@@ -40,4 +40,5 @@ class EmployeeRecord(Record):
     従業員記録
     """
 
+    employee_id: int
     employee: Employee

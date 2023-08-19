@@ -15,8 +15,8 @@ class ClassroomService(BaseService):
     子供部屋の操作用ロジック
     """
 
-    @classmethod
-    def _data_format(cls, data: ClassroomModel) -> Classroom:
+    @staticmethod
+    def _data_format(data: ClassroomModel) -> Classroom:
         """
         ClassroomModel を Classroom に変換する
         """

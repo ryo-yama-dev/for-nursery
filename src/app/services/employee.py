@@ -16,8 +16,8 @@ class EmployeeService(BaseService):
     従業員操作のための業務ロジック
     """
 
-    @classmethod
-    def _data_format(cls, data: EmployeeModel) -> Employee:
+    @staticmethod
+    def _data_format(data: EmployeeModel) -> Employee:
         """
         EmployeeModel を Employee に変換する
         """

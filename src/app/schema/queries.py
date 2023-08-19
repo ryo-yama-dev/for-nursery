@@ -1,8 +1,14 @@
 import strawberry
 
 from app.database import create_session
-from app.services import ChildService, ClassroomService, EmployeeService, JobService
-from app.types import Child, Classroom, Employee, Job
+from app.services import (
+    ChildService,
+    ClassroomService,
+    EmployeeRecordService,
+    EmployeeService,
+    JobService,
+)
+from app.types import Child, Classroom, Employee, EmployeeRecord, Job
 
 
 @strawberry.type
@@ -41,3 +47,8 @@ class Query:
     def classroom(self, id: int) -> Classroom | None:
         with create_session() as session:
             return ClassroomService(session).find_one(id=id)
+
+    @strawberry.field(description="従業員日次記録一覧取得")
+    def employee_records(self) -> list[EmployeeRecord]:
+        with create_session() as session:
+            return EmployeeRecordService(session).find_all()

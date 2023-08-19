@@ -15,8 +15,8 @@ class ChildService(BaseService):
     園児データの操作用ロジック
     """
 
-    @classmethod
-    def _data_format(cls, data: ChildModel) -> Child:
+    @staticmethod
+    def _data_format(data: ChildModel) -> Child:
         """
         ChildModel を Child に変換する
         """
