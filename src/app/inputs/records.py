@@ -10,7 +10,7 @@ __all__ = [
 ]
 
 
-@strawberry.interface(description="")
+@strawberry.input(description="")
 class RecordInput:
     """
     Record の汎用 input

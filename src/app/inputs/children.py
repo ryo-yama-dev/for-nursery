@@ -5,7 +5,7 @@ from app.types import Sex
 __all__ = ["ChildCreateInput", "ChildUpdateInput"]
 
 
-@strawberry.interface(description="")
+@strawberry.input(description="")
 class ChildInput:
     """
     Child の汎用 input

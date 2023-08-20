@@ -3,7 +3,7 @@ import strawberry
 __all__ = ["ClassroomCreateInput", "ClassroomUpdateInput"]
 
 
-@strawberry.interface(description="")
+@strawberry.input(description="")
 class ClassroomInput:
     """
     Classroom の汎用 input

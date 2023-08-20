@@ -3,7 +3,7 @@ import strawberry
 __all__ = ["JobCreateInput", "JobUpdateInput"]
 
 
-@strawberry.interface(description="Job の汎用 input")
+@strawberry.input(description="Job の汎用 input")
 class JobInput:
     """
     Job の汎用 input

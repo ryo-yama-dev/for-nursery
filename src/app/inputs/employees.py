@@ -5,7 +5,7 @@ from app.types import Sex
 __all__ = ["ProfileInput", "EmployeeCreateInput", "EmployeeUpdateInput"]
 
 
-@strawberry.interface(description="")
+@strawberry.input(description="")
 class EmployeeInput:
     """
     従業員の汎用 input
