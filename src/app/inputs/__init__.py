@@ -7,6 +7,7 @@ from .records import (
     ChildRecordUpdateInput,
     EmployeeRecordCreateInput,
     EmployeeRecordUpdateInput,
+    RecordsQueryInput,
 )
 
 __all__ = [
@@ -22,4 +23,5 @@ __all__ = [
     "ChildRecordUpdateInput",
     "EmployeeRecordCreateInput",
     "EmployeeRecordUpdateInput",
+    "RecordsQueryInput",
 ]

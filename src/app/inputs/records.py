@@ -7,6 +7,7 @@ __all__ = [
     "ChildRecordUpdateInput",
     "EmployeeRecordCreateInput",
     "EmployeeRecordUpdateInput",
+    "RecordsQueryInput",
 ]
 
 
@@ -20,6 +21,17 @@ class RecordInput:
     date: datetime.date
     attend_time: datetime.time
     leave_time: datetime.time
+
+
+@strawberry.input(description="")
+class RecordsQueryInput:
+    """
+    登退園記録の抽出 Query input
+    """
+
+    year: int
+    month: int
+    week: int | None = None
 
 
 @strawberry.input(description="")
