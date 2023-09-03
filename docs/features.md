@@ -74,7 +74,7 @@
 
 - [ ] employees_daily
 - [ ] employees_weekly
-- [ ] employees_monthly
+- [x] employees_monthly
 - [ ] employee_annually
 
 ### 登退園情報取得
@@ -111,11 +111,13 @@
 
 ### 出退勤登録
 
-- [ ] employee_daily_insert
+- [x] employee_record_create
+- [ ] employee_record_update
 
 ### 登退園登録
 
-- [ ] child_daily_insert
+- [ ] child_record_create
+- [ ] child_record_update
 
 ### 集金カテゴリ操作
 

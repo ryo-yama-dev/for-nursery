@@ -3,9 +3,9 @@
 ### Short Term
 
 - [x] 全 Model 定義
-- [ ] 全 Object Schema 定義
-- [ ] 基本 Query 定義
-- [ ] 最低限 Mutation 定義
+- [x] 全 Object Schema 定義
+- [x] 基本 Query 定義
+- [x] 最低限 Mutation 定義
 
 ### Middle Term
 

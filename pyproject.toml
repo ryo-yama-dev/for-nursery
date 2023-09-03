@@ -7,14 +7,14 @@ description = ""
 authors = []
 dependencies = [
     "Cython>=0.29.34",
-    "fastapi>=0.100.0",
-    "uvicorn[standard]>=0.22.0",
-    "strawberry-graphql[fastapi]>=0.194.4",
-    "gunicorn>=20.1.0",
-    "psycopg[binary]>=3.1.9",
-    "SQLAlchemy>=2.0.18",
-    "pydantic>=2.0.2",
-    "pydantic-settings>=2.0.2",
+    "fastapi>=0.103.1",
+    "uvicorn[standard]>=0.23.2",
+    "strawberry-graphql[fastapi]>=0.205.0",
+    "gunicorn>=21.2.0",
+    "psycopg[binary]>=3.1.10",
+    "SQLAlchemy>=2.0.20",
+    "pydantic>=2.3.0",
+    "pydantic-settings>=2.0.3",
 ]
 requires-python = ">=3.11"
 license = {text = "MIT"}
