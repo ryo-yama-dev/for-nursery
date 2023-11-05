@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from strawberry.asgi import GraphQL
 from fastapi.middleware.cors import CORSMiddleware
+from strawberry.asgi import GraphQL
 
 from app.schema import schema
 

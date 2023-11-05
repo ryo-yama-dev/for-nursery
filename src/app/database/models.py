@@ -228,11 +228,6 @@ class ChildRecordModel(Base, Record):
     child: Mapped[ChildModel] = relationship(
         "ChildModel", default=None, back_populates="records"
     )
-    # date: Mapped[datetime.date] = mapped_column(Date, comment="日付")
-    # attend_time: Mapped[datetime.time] = mapped_column(Time, comment="登園時間")
-    # leave_time: Mapped[datetime.time] = mapped_column(Time, comment="退園時間")
-    # note: Mapped[str | None] = mapped_column(String, comment="備考")
-    # edited: Mapped[bool] = mapped_column(Boolean, default=False, comment="編集済みか否か")
 
 
 class EmployeeRecordModel(Base, Record):
@@ -246,11 +241,6 @@ class EmployeeRecordModel(Base, Record):
     employee: Mapped[EmployeeModel] = relationship(
         "EmployeeModel", default=None, back_populates="records"
     )
-    # date: Mapped[datetime.date] = mapped_column(Date, comment="日付")
-    # attend_time: Mapped[datetime.time] = mapped_column(Time, comment="出勤時間")
-    # leave_time: Mapped[datetime.time] = mapped_column(Time, comment="退勤時間")
-    # note: Mapped[str | None] = mapped_column(String, comment="備考")
-    # edited: Mapped[bool] = mapped_column(Boolean, default=False, comment="編集済みか否か")
 
 
 postgre_url = f"postgresql+psycopg://{user_password}@{host_port}/postgres"

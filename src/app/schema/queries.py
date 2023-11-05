@@ -9,7 +9,7 @@ from app.services import (
     EmployeeService,
     JobService,
 )
-from app.types import Child, Classroom, Employee, EmployeeDailyRecord, Job
+from app.types import Child, Classroom, Employee, EmployeeRecordDaily, Job
 
 
 @strawberry.type
@@ -49,8 +49,8 @@ class Query:
         with create_session() as session:
             return ClassroomService(session).find_one(id=id)
 
-    @strawberry.field(description="従業員日次記録一覧取得")
-    def employees_monthly(self, input: RecordsQueryInput) -> list[EmployeeDailyRecord]:
+    @strawberry.field(description="月毎の従業員日次記録取得")
+    def employees_monthly(self, input: RecordsQueryInput) -> list[EmployeeRecordDaily]:
         with create_session() as session:
             return EmployeeRecordService(session).filter_by_month(
                 year=input.year, month=input.month

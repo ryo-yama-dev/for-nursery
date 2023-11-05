@@ -1,17 +1,23 @@
 {
-    "python.formatting.provider": "black",
-    "python.linting.flake8CategorySeverity.F": "Warning",
-    "python.linting.flake8CategorySeverity.W": "Warning",
-    "python.linting.flake8CategorySeverity.E": "Error",
-    "python.linting.flake8Enabled": true,
-    "python.linting.ignorePatterns": [
-        "**/site-packages/**/*.py",
-        ".vscode/*.py",
-        "**/tests/**/*_test.py"
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+    },
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    "mypy-type-checker.interpreter": [
+        "${workspaceFolder}/.venv/bin/python"
     ],
-    "python.linting.mypyEnabled": true,
-    "python.linting.mypyPath": ".venv/bin/mypy",
-    "python.linting.flake8Path": ".venv/bin/pflake8",
-    "python.analysis.typeCheckingMode": "basic",
-    "python.defaultInterpreterPath": ".venv/bin/python3.11"
+    "mypy-type-checker.path": [
+        "${workspaceFolder}/.venv/bin/mypy"
+    ],
+    "flake8.importStrategy": "fromEnvironment",
+    "flake8.interpreter": [
+        "${workspaceFolder}/.venv/bin/python"
+    ],
+    "flake8.path": [
+        "${workspaceFolder}/.venv/bin/pflake8"
+    ],
+    "isort.interpreter": [
+        "${workspaceFolder}/.venv/bin/python"
+    ],
 }

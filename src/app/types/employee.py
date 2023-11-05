@@ -1,11 +1,13 @@
-import datetime
-
 import strawberry
 
 from .interaces import Record, Timestamp
 from .job import Job
 
-__all__ = ["Employee", "EmployeeRecord", "EmployeeDailyRecord"]
+__all__ = [
+    "Employee",
+    "EmployeeRecord",
+    "EmployeeRecordDaily",
+]
 
 
 @strawberry.type(description="プロフィール")
@@ -43,14 +45,13 @@ class EmployeeRecord(Record):
     """
 
     employee_id: int
-    employee: Employee
 
 
-@strawberry.type(description="日次従業員記録")
-class EmployeeDailyRecord:
+@strawberry.type(description="")
+class EmployeeRecordDaily:
     """
     日次従業員記録
     """
 
-    date: datetime.date
-    records: list[EmployeeRecord]
+    employee: Employee
+    records: list[EmployeeRecord | None]
