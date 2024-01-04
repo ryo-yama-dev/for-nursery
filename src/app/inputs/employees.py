@@ -34,6 +34,7 @@ class EmployeeCreateInput(EmployeeInput):
     従業員の新規作成用 input
     """
 
+    auth_id: str
     profiles: list[ProfileInput] | None = None
 
 

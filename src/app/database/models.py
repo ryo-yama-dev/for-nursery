@@ -160,7 +160,9 @@ class EmployeeModel(Base, TimestampMixin):
     profiles: Mapped[list["ProfileModel"]] = relationship(
         "ProfileModel", back_populates="employee", default=None
     )
-    auth_id: Mapped[str | None] = mapped_column(String, default=None, comment="認証ID")
+    auth_id: Mapped[str | None] = mapped_column(
+        String, default=None, comment="認証ID", unique=True
+    )
     classroom_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("classroom.id"), comment="教室", default=None
     )

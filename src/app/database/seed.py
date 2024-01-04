@@ -60,12 +60,13 @@ def seed() -> None:
             [
                 dict(
                     name=faker.name(),
+                    auth_id=f"100{i}",
                     belong=True,
                     job_id=job.id,
                     sex=random.choice(["MALE", "FEMALE"]),
                     classroom_id=random.choice(cla_ids),
                 )
-                for job in jobs
+                for i, job in enumerate(jobs)
             ],
         )
 
