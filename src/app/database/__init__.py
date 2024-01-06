@@ -6,6 +6,7 @@ from .models import (
     EmployeeModel,
     EmployeeRecordModel,
     JobModel,
+    SexEnum,
     create_session,
 )
 
@@ -18,4 +19,5 @@ __all__ = [
     "EmployeeRecordModel",
     "ChildRecordModel",
     "create_session",
+    "SexEnum",
 ]

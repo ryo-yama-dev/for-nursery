@@ -1,20 +1,17 @@
 import strawberry
 
-from .interaces import Record, Timestamp
+from .interfaces import Person, Record, Timestamp
 
 __all__ = ["Child", "ChildRecord"]
 
 
 @strawberry.type(description="園児")
-class Child(Timestamp):
+class Child(Person, Timestamp):
     """
     園児
     """
 
-    id: int
-    name: str
     age: int
-    sex: str
     phone: str
     address: str
     parent: str

@@ -1,19 +1,17 @@
 import strawberry
 
-from app.types import Sex
+from .common import PersonInput
 
 __all__ = ["ProfileInput", "EmployeeCreateInput", "EmployeeUpdateInput"]
 
 
 @strawberry.input(description="")
-class EmployeeInput:
+class EmployeeInput(PersonInput):
     """
     従業員の汎用 input
     """
 
-    name: str
     belong: bool
-    sex: Sex
     job_id: int
 
 

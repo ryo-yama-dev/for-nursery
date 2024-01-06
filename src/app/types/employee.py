@@ -1,6 +1,6 @@
 import strawberry
 
-from .interaces import Record, Timestamp
+from .interfaces import Person, Record, Timestamp
 from .job import Job
 
 __all__ = [
@@ -22,15 +22,12 @@ class Profile:
 
 
 @strawberry.type(description="従業員")
-class Employee(Timestamp):
+class Employee(Person, Timestamp):
     """
     従業員
     """
 
-    id: int
     auth_id: str | None = None
-    name: str
-    sex: str
     belong: bool
     job_id: int
     job: Job

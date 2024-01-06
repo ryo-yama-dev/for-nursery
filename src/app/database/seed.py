@@ -14,6 +14,7 @@ from app.database.models import (
     EmployeeModel,
     EmployeeRecordModel,
     JobModel,
+    SexEnum,
 )
 
 postgres_user = os.environ.get("POSTGRES_USER")
@@ -59,11 +60,12 @@ def seed() -> None:
             insert(EmployeeModel).returning(EmployeeModel),
             [
                 dict(
-                    name=faker.name(),
+                    first_name=faker.first_name(),
+                    last_name=faker.last_name(),
                     auth_id=f"100{i}",
                     belong=True,
                     job_id=job.id,
-                    sex=random.choice(["MALE", "FEMALE"]),
+                    sex=random.choice(list(SexEnum)),
                     classroom_id=random.choice(cla_ids),
                 )
                 for i, job in enumerate(jobs)
@@ -74,9 +76,10 @@ def seed() -> None:
             insert(ChildModel).returning(ChildModel),
             [
                 dict(
-                    name=faker.name(),
+                    first_name=faker.first_name(),
+                    last_name=faker.last_name(),
                     age=random.randint(1, 6),
-                    sex=random.choice(["MALE", "FEMALE"]),
+                    sex=random.choice(list(SexEnum)),
                     phone=faker.phone_number(),
                     address=faker.address(),
                     parent=faker.name(),

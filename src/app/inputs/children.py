@@ -1,22 +1,20 @@
 import strawberry
 
-from app.types import Sex
+from .common import PersonInput
 
 __all__ = ["ChildCreateInput", "ChildUpdateInput"]
 
 
 @strawberry.input(description="")
-class ChildInput:
+class ChildInput(PersonInput):
     """
     Child の汎用 input
     """
 
-    name: str
     age: int
     phone: str
     address: str
     parent: str
-    sex: Sex
     classroom_id: int | None = None
 
 

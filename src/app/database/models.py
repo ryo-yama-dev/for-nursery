@@ -1,5 +1,6 @@
 import copy
 import datetime
+import enum
 import os
 import re
 from typing import Any
@@ -9,6 +10,7 @@ from sqlalchemy import (
     Boolean,
     Date,
     DateTime,
+    Enum,
     ForeignKey,
     Integer,
     String,
@@ -39,6 +41,7 @@ engine = create_engine(f"postgresql+psycopg://{user_password}@{host_port}/postgr
 __all__ = [
     "engine",
     "create_session",
+    "SexEnum",
     "JobModel",
     "ClassroomModel",
     "ChildModel",
@@ -107,6 +110,15 @@ class TimestampMixin:
     )
 
 
+class SexEnum(enum.Enum):
+    """
+    性別の列挙値
+    """
+
+    male = "男"
+    female = "女"
+
+
 class JobModel(Base, TimestampMixin):
     """
     職種・職級
@@ -126,9 +138,10 @@ class ChildModel(Base, TimestampMixin):
     園児
     """
 
-    name: Mapped[str] = mapped_column(String, comment="氏名")
+    first_name: Mapped[str] = mapped_column(String, comment="名")
+    last_name: Mapped[str] = mapped_column(String, comment="姓")
     age: Mapped[int] = mapped_column(Integer, comment="年齢")
-    sex: Mapped[str]
+    sex: Mapped[str] = mapped_column(Enum(SexEnum), comment="性別")
     phone: Mapped[str] = mapped_column(String, comment="連絡先電話番号")
     address: Mapped[str] = mapped_column(String, comment="連絡先住所")
     parent: Mapped[str] = mapped_column(String, comment="保護者")
@@ -150,9 +163,10 @@ class EmployeeModel(Base, TimestampMixin):
     従業員
     """
 
-    name: Mapped[str] = mapped_column(String, comment="氏名")
+    first_name: Mapped[str] = mapped_column(String, comment="名")
+    last_name: Mapped[str] = mapped_column(String, comment="姓")
     belong: Mapped[bool] = mapped_column(Boolean, comment="在職中か否か")
-    sex: Mapped[str]
+    sex: Mapped[str] = mapped_column(Enum(SexEnum), comment="性別")
     job_id: Mapped[int] = mapped_column(Integer, ForeignKey("job.id"))
     job: Mapped[JobModel] = relationship(
         "JobModel", back_populates="employees", default=None

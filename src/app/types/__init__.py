@@ -1,7 +1,7 @@
 from .child import Child, ChildRecord
 from .classroom import Classroom
 from .employee import Employee, EmployeeRecord, EmployeeRecordDaily, Profile
-from .interaces import Sex
+from .interfaces import Person, Sex
 from .job import Job
 
 __all__ = [
@@ -14,4 +14,5 @@ __all__ = [
     "EmployeeRecordDaily",
     "Job",
     "Sex",
+    "Person",
 ]

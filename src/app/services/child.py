@@ -33,5 +33,7 @@ class ChildService(BaseService):
         return self._data_format(child) if child else None
 
     def create(self, input: ChildCreateInput) -> Child:
-        child = ChildRepository(self.session).create(strawberry.asdict(input))
+        child = ChildRepository(self.session).create(
+            (strawberry.asdict(input) | {"sex": input.sex.value})
+        )
         return self._data_format(child)

@@ -38,5 +38,7 @@ class EmployeeService(BaseService):
         return self._data_format(employee) if employee else None
 
     def create(self, input: EmployeeCreateInput) -> Employee:
-        employee = EmployeeRepository(self.session).create(strawberry.asdict(input))
+        employee = EmployeeRepository(self.session).create(
+            (strawberry.asdict(input) | {"sex": input.sex.value})
+        )
         return self._data_format(employee)

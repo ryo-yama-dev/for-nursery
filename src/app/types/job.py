@@ -1,6 +1,6 @@
 import strawberry
 
-from .interaces import Timestamp
+from .interfaces import Timestamp
 
 __all__ = ["Job"]
 
