@@ -6,17 +6,6 @@ from app.types import Status
 
 
 @strawberry.input(description="")
-class RecordInput:
-    """
-    Record の汎用 input
-    """
-
-    date: datetime.date
-    attend_time: datetime.time
-    leave_time: datetime.time | None = None
-
-
-@strawberry.input(description="")
 class RecordsQueryInput:
     """
     登退園記録の抽出 Query input
@@ -40,18 +29,31 @@ class ChildTimelineCreateInput:
 
 
 @strawberry.input(description="")
-class EmployeeRecordCreateInput(RecordInput):
+class EmployeeRecordInput:
     """
-    EmployeeRecord 登録用 input
+    Record の汎用 input
     """
 
+    date: datetime.date
     employee_id: int
 
 
 @strawberry.input(description="")
-class EmployeeRecordUpdateInput(RecordInput):
+class EmployeeRecordCreateInput(EmployeeRecordInput):
+    """
+    EmployeeRecord 登録用 input
+    """
+
+    attend_time: datetime.time
+    leave_time: datetime.time | None = None
+
+
+@strawberry.input(description="")
+class EmployeeRecordUpdateInput(EmployeeRecordInput):
     """
     EmployeeRecord 更新用 input
     """
 
-    leave_time: datetime.time
+    attend_time: datetime.time | None = None
+    leave_time: datetime.time | None = None
+    note: str | None = None

@@ -6,7 +6,7 @@ import strawberry
 from sqlalchemy import ScalarResult
 
 from app.database import EmployeeModel, EmployeeRecordModel
-from app.inputs import EmployeeRecordCreateInput
+from app.inputs import EmployeeRecordCreateInput, EmployeeRecordUpdateInput
 from app.repositories import EmployeeRecordRepository, EmployeeRepository
 from app.types import EmployeeRecord, EmployeeRecordDaily
 
@@ -88,6 +88,17 @@ class EmployeeRecordService(BaseService):
 
     def create(self, input: EmployeeRecordCreateInput) -> EmployeeRecord:
         record = EmployeeRecordRepository(self.session).create(strawberry.asdict(input))
+        return self._data_format(record)
+
+    def update(self, input: EmployeeRecordUpdateInput) -> EmployeeRecord:
+        """
+        従業員記録を更新
+        """
+        record = EmployeeRecordRepository(self.session).update(
+            employee_id=input.employee_id,
+            date=input.date,
+            kwargs=strawberry.asdict(input),
+        )
         return self._data_format(record)
 
     def filter_by_date(self, date: datetime.date) -> list[EmployeeRecord]:

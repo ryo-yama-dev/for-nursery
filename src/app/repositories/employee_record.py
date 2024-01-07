@@ -2,7 +2,7 @@ import calendar
 import datetime
 from typing import Any
 
-from sqlalchemy import ScalarResult, insert, select
+from sqlalchemy import ScalarResult, insert, select, update
 
 from app.common import dict_exclude_none
 from app.database import EmployeeRecordModel
@@ -59,3 +59,29 @@ class EmployeeRecordRepository(BaseRepository):
         )
         self.session.commit()
         return employee.scalar_one()
+
+    def update(
+        self,
+        employee_id: int,
+        date: datetime.date,
+        kwargs: dict[str, Any] = {},
+    ) -> EmployeeRecordModel:
+        """
+        従業員記録を更新
+        """
+        input: dict[str, Any] = dict_exclude_none(kwargs)
+        # 補足情報を書き込んだ場合は編集済みフラグを立てる
+        if "note" in input:
+            input["edited"] = True
+
+        record = self.session.execute(
+            update(EmployeeRecordModel)
+            .where(
+                EmployeeRecordModel.employee_id == employee_id,
+                EmployeeRecordModel.date == date,
+            )
+            .values(**input)
+            .returning(EmployeeRecordModel),
+        )
+        self.session.commit()
+        return record.scalar_one()

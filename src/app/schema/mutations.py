@@ -6,6 +6,7 @@ from app.inputs import (
     ClassroomCreateInput,
     EmployeeCreateInput,
     EmployeeRecordCreateInput,
+    EmployeeRecordUpdateInput,
     JobCreateInput,
 )
 from app.services import (
@@ -50,3 +51,10 @@ class Mutation:
     ) -> EmployeeRecord:
         with create_session() as session:
             return EmployeeRecordService(session).create(input)
+
+    @strawberry.mutation
+    def employee_record_update(
+        self, input: EmployeeRecordUpdateInput
+    ) -> EmployeeRecord:
+        with create_session() as session:
+            return EmployeeRecordService(session).update(input)
