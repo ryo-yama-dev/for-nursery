@@ -258,8 +258,10 @@ class EmployeeRecordModel(Base):
 
     date: Mapped[datetime.date] = mapped_column(Date, comment="日付")
     attend_time: Mapped[datetime.time] = mapped_column(Time, comment="登園時間")
-    leave_time: Mapped[datetime.time] = mapped_column(Time, comment="退園時間")
     note: Mapped[str | None] = mapped_column(String, comment="備考")
+    leave_time: Mapped[datetime.time | None] = mapped_column(
+        Time, default=None, comment="退園時間"
+    )
     edited: Mapped[bool] = mapped_column(Boolean, default=False, comment="編集済みか否か")
     employee_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("employee.id"), default=None, comment="従業員"

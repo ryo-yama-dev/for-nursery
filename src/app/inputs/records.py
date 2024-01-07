@@ -11,10 +11,9 @@ class RecordInput:
     Record の汎用 input
     """
 
-    # TODO: attend と leave のどちらかだけを必須にする
     date: datetime.date
     attend_time: datetime.time
-    leave_time: datetime.time
+    leave_time: datetime.time | None = None
 
 
 @strawberry.input(description="")
@@ -51,4 +50,8 @@ class EmployeeRecordCreateInput(RecordInput):
 
 @strawberry.input(description="")
 class EmployeeRecordUpdateInput(RecordInput):
-    pass
+    """
+    EmployeeRecord 更新用 input
+    """
+
+    leave_time: datetime.time

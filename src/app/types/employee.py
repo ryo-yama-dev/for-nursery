@@ -47,7 +47,7 @@ class EmployeeRecord:
     id: int
     date: datetime.date
     attend_time: datetime.time
-    leave_time: datetime.time
+    leave_time: datetime.time | None = None
     note: str
     edited: bool
     employee_id: int
