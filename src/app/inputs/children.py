@@ -1,8 +1,8 @@
 import strawberry
 
-from .common import PersonInput
+from app.types import Status
 
-__all__ = ["ChildCreateInput", "ChildUpdateInput"]
+from .common import PersonInput
 
 
 @strawberry.input(description="")
@@ -15,6 +15,7 @@ class ChildInput(PersonInput):
     phone: str
     address: str
     parent: str
+    status: Status
     classroom_id: int | None = None
 
 

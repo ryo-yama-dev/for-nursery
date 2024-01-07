@@ -42,14 +42,14 @@ __all__ = [
     "engine",
     "create_session",
     "SexEnum",
+    "StatusEnum",
     "JobModel",
     "ClassroomModel",
     "ChildModel",
     "EmployeeModel",
     "ProfileModel",
-    "ChildRecordModel",
+    "ChildTimelineModel",
     "EmployeeRecordModel",
-    "Record",
 ]
 
 
@@ -133,6 +133,18 @@ class JobModel(Base, TimestampMixin):
     )
 
 
+class StatusEnum(enum.Enum):
+    """
+    在内・在外ステータスの列挙値
+    """
+
+    not_come = 1
+    attend = 2
+    leave = 3
+    absence = 4
+    outing = 5
+
+
 class ChildModel(Base, TimestampMixin):
     """
     園児
@@ -145,16 +157,33 @@ class ChildModel(Base, TimestampMixin):
     phone: Mapped[str] = mapped_column(String, comment="連絡先電話番号")
     address: Mapped[str] = mapped_column(String, comment="連絡先住所")
     parent: Mapped[str] = mapped_column(String, comment="保護者")
+    status: Mapped[int] = mapped_column(Enum(StatusEnum), comment="在内・在外ステータス")
     classroom_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("classroom.id"), comment="教室", default=None
     )
     classroom: Mapped["ClassroomModel"] = relationship(
         "ClassroomModel", back_populates="children", default=None
     )
-    records: Mapped[list["ChildRecordModel"]] = relationship(
-        "ChildRecordModel",
+    timelines: Mapped[list["ChildTimelineModel"]] = relationship(
+        "ChildTimelineModel",
         back_populates="child",
         default=None,
+    )
+
+
+class ChildTimelineModel(Base):
+    """
+    園児のタイムライン
+    """
+
+    date: Mapped[datetime.date] = mapped_column(Date, comment="日付")
+    time: Mapped[datetime.time] = mapped_column(Time, comment="時刻")
+    event: Mapped[int] = mapped_column(Enum(StatusEnum), comment="記録の種類")
+    child_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("child.id"), default=None, comment="園児"
+    )
+    child: Mapped[ChildModel] = relationship(
+        "ChildModel", default=None, back_populates="timelines"
     )
 
 
@@ -222,9 +251,9 @@ class ClassroomModel(Base):
     )
 
 
-class Record:
+class EmployeeRecordModel(Base):
     """
-    日毎の記録
+    従業員記録
     """
 
     date: Mapped[datetime.date] = mapped_column(Date, comment="日付")
@@ -232,26 +261,6 @@ class Record:
     leave_time: Mapped[datetime.time] = mapped_column(Time, comment="退園時間")
     note: Mapped[str | None] = mapped_column(String, comment="備考")
     edited: Mapped[bool] = mapped_column(Boolean, default=False, comment="編集済みか否か")
-
-
-class ChildRecordModel(Base, Record):
-    """
-    園児記録
-    """
-
-    child_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("child.id"), default=None, comment="園児"
-    )
-    child: Mapped[ChildModel] = relationship(
-        "ChildModel", default=None, back_populates="records"
-    )
-
-
-class EmployeeRecordModel(Base, Record):
-    """
-    従業員記録
-    """
-
     employee_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("employee.id"), default=None, comment="従業員"
     )

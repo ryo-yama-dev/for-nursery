@@ -9,12 +9,13 @@ from app.common.config import get_settings
 from app.database.models import (
     Base,
     ChildModel,
-    ChildRecordModel,
+    ChildTimelineModel,
     ClassroomModel,
     EmployeeModel,
     EmployeeRecordModel,
     JobModel,
     SexEnum,
+    StatusEnum,
 )
 
 postgres_user = os.environ.get("POSTGRES_USER")
@@ -80,6 +81,7 @@ def seed() -> None:
                     last_name=faker.last_name(),
                     age=random.randint(1, 6),
                     sex=random.choice(list(SexEnum)),
+                    status=random.choice(list(StatusEnum)),
                     phone=faker.phone_number(),
                     address=faker.address(),
                     parent=faker.name(),
@@ -103,13 +105,13 @@ def seed() -> None:
         )
 
         session.execute(
-            insert(ChildRecordModel).returning(ChildRecordModel),
+            insert(ChildTimelineModel).returning(ChildTimelineModel),
             [
                 dict(
                     child_id=child.id,
                     date=faker.date(),
-                    attend_time=faker.time(),
-                    leave_time=faker.time(),
+                    time=faker.time(),
+                    event=random.choice(list(StatusEnum)),
                 )
                 for child in children
             ],

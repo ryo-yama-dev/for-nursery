@@ -3,29 +3,22 @@ from enum import Enum
 
 import strawberry
 
-from app.database import SexEnum
-
-__all__ = ["Person", "Record", "Sex", "Timestamp"]
-
-
-@strawberry.interface(description="日次記録")
-class Record:
-    """
-    日次記録
-    """
-
-    id: int
-    date: datetime.date
-    attend_time: datetime.time
-    leave_time: datetime.time
-    note: str
-    edited: bool
+from app.database import SexEnum, StatusEnum
 
 
 @strawberry.enum(description="性別")
 class Sex(Enum):
     MALE = SexEnum.male
     FEMALE = SexEnum.female
+
+
+@strawberry.enum(description="在内・在外")
+class Status(Enum):
+    not_come = StatusEnum.not_come
+    attend = StatusEnum.attend
+    leave = StatusEnum.leave
+    absence = StatusEnum.absence
+    outing = StatusEnum.outing
 
 
 @strawberry.interface(description="タイムスタンプ")

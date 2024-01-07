@@ -1,6 +1,8 @@
+import datetime
+
 import strawberry
 
-from .interfaces import Person, Record, Timestamp
+from .interfaces import Person, Timestamp
 from .job import Job
 
 __all__ = [
@@ -37,11 +39,17 @@ class Employee(Person, Timestamp):
 
 
 @strawberry.type(description="従業員記録")
-class EmployeeRecord(Record):
+class EmployeeRecord:
     """
     従業員記録
     """
 
+    id: int
+    date: datetime.date
+    attend_time: datetime.time
+    leave_time: datetime.time
+    note: str
+    edited: bool
     employee_id: int
 
 

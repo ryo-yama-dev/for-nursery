@@ -2,13 +2,7 @@ import datetime
 
 import strawberry
 
-__all__ = [
-    "ChildRecordCreateInput",
-    "ChildRecordUpdateInput",
-    "EmployeeRecordCreateInput",
-    "EmployeeRecordUpdateInput",
-    "RecordsQueryInput",
-]
+from app.types import Status
 
 
 @strawberry.input(description="")
@@ -34,14 +28,16 @@ class RecordsQueryInput:
     week: int | None = None
 
 
-@strawberry.input(description="")
-class ChildRecordCreateInput(RecordInput):
-    pass
+@strawberry.input(description="ChildTimeline 登録用 input")
+class ChildTimelineCreateInput:
+    """
+    ChildTimeline 登録用 input
+    """
 
-
-@strawberry.input(description="")
-class ChildRecordUpdateInput(RecordInput):
-    pass
+    date: datetime.date
+    time: datetime.time
+    event: Status
+    child_id: int
 
 
 @strawberry.input(description="")

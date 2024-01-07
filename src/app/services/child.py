@@ -7,8 +7,6 @@ from app.types import Child
 
 from .base import BaseService
 
-__all__ = ["ChildService"]
-
 
 class ChildService(BaseService):
     """
@@ -34,6 +32,10 @@ class ChildService(BaseService):
 
     def create(self, input: ChildCreateInput) -> Child:
         child = ChildRepository(self.session).create(
-            (strawberry.asdict(input) | {"sex": input.sex.value})
+            (
+                strawberry.asdict(input)
+                | {"sex": input.sex.value}
+                | {"status": input.status.value}
+            )
         )
         return self._data_format(child)

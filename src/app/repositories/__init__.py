@@ -1,6 +1,6 @@
 from .base import BaseRepository, RepositoryError, repository_error_handler
 from .child import ChildRepository
-from .child_record import ChildRecordRepository
+from .child_timeline import ChildTimelineRepository
 from .classroom import ClassroomRepository
 from .employee import EmployeeRepository
 from .employee_record import EmployeeRecordRepository
@@ -11,7 +11,7 @@ __all__ = [
     "RepositoryError",
     "repository_error_handler",
     "ChildRepository",
-    "ChildRecordRepository",
+    "ChildTimelineRepository",
     "ClassroomRepository",
     "EmployeeRepository",
     "EmployeeRecordRepository",

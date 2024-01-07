@@ -3,8 +3,7 @@ from .classrooms import ClassroomCreateInput, ClassroomUpdateInput
 from .employees import EmployeeCreateInput, EmployeeUpdateInput
 from .jobs import JobCreateInput, JobUpdateInput
 from .records import (
-    ChildRecordCreateInput,
-    ChildRecordUpdateInput,
+    ChildTimelineCreateInput,
     EmployeeRecordCreateInput,
     EmployeeRecordUpdateInput,
     RecordsQueryInput,
@@ -19,8 +18,7 @@ __all__ = [
     "EmployeeUpdateInput",
     "JobCreateInput",
     "JobUpdateInput",
-    "ChildRecordCreateInput",
-    "ChildRecordUpdateInput",
+    "ChildTimelineCreateInput",
     "EmployeeRecordCreateInput",
     "EmployeeRecordUpdateInput",
     "RecordsQueryInput",
