@@ -27,6 +27,7 @@ class Employee(Person, Timestamp):
     従業員
     """
 
+    serial_number: str
     auth_id: str | None = None
     belong: bool
     job_id: int

@@ -62,7 +62,7 @@ def seed() -> None:
                 dict(
                     first_name=faker.first_name(),
                     last_name=faker.last_name(),
-                    auth_id=f"100{i}",
+                    serial_number=f"100{i}",
                     belong=True,
                     job_id=job.id,
                     sex=random.choice(list(SexEnum)),

@@ -163,6 +163,7 @@ class EmployeeModel(Base, TimestampMixin):
     従業員
     """
 
+    serial_number: Mapped[str] = mapped_column(String, comment="社員番号", unique=True)
     first_name: Mapped[str] = mapped_column(String, comment="名")
     last_name: Mapped[str] = mapped_column(String, comment="姓")
     belong: Mapped[bool] = mapped_column(Boolean, comment="在職中か否か")
