@@ -152,7 +152,7 @@ class ChildModel(Base, TimestampMixin):
 
     first_name: Mapped[str] = mapped_column(String, comment="名")
     last_name: Mapped[str] = mapped_column(String, comment="姓")
-    age: Mapped[int] = mapped_column(Integer, comment="年齢")
+    birthday: Mapped[datetime.date] = mapped_column(Date, comment="誕生日")
     sex: Mapped[str] = mapped_column(Enum(SexEnum), comment="性別")
     phone: Mapped[str] = mapped_column(String, comment="連絡先電話番号")
     address: Mapped[str] = mapped_column(String, comment="連絡先住所")
@@ -196,6 +196,7 @@ class EmployeeModel(Base, TimestampMixin):
     first_name: Mapped[str] = mapped_column(String, comment="名")
     last_name: Mapped[str] = mapped_column(String, comment="姓")
     belong: Mapped[bool] = mapped_column(Boolean, comment="在職中か否か")
+    birthday: Mapped[datetime.date] = mapped_column(Date, comment="誕生日")
     sex: Mapped[str] = mapped_column(Enum(SexEnum), comment="性別")
     job_id: Mapped[int] = mapped_column(Integer, ForeignKey("job.id"))
     job: Mapped[JobModel] = relationship(

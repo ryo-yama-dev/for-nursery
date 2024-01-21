@@ -41,3 +41,4 @@ class Person:
     first_name: str
     last_name: str
     sex: Sex
+    birthday: datetime.date

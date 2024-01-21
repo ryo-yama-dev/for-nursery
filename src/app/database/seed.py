@@ -64,6 +64,7 @@ def seed() -> None:
                     first_name=faker.first_name(),
                     last_name=faker.last_name(),
                     serial_number=f"100{i}",
+                    birthday=faker.date(),
                     belong=True,
                     job_id=job.id,
                     sex=random.choice(list(SexEnum)),
@@ -79,7 +80,7 @@ def seed() -> None:
                 dict(
                     first_name=faker.first_name(),
                     last_name=faker.last_name(),
-                    age=random.randint(1, 6),
+                    birthday=faker.date(),
                     sex=random.choice(list(SexEnum)),
                     status=random.choice(list(StatusEnum)),
                     phone=faker.phone_number(),

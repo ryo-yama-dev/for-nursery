@@ -11,7 +11,6 @@ class Child(Person, Timestamp):
     園児
     """
 
-    age: int
     phone: str
     address: str
     status: Status

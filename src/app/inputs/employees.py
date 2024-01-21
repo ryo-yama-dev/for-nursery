@@ -1,7 +1,5 @@
 import strawberry
 
-from app.types import Sex
-
 from .common import PersonInput
 
 
@@ -56,4 +54,3 @@ class EmployeeFilterInput:
     last_name: str | None = None
     belong: bool | None = None
     job_id: int | None = None
-    sex: Sex | None = None

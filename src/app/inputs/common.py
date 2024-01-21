@@ -1,3 +1,5 @@
+import datetime
+
 import strawberry
 
 from app.types import Sex
@@ -12,3 +14,4 @@ class PersonInput:
     first_name: str
     last_name: str
     sex: Sex
+    birthday: datetime.date
