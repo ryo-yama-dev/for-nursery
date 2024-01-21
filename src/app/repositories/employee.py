@@ -14,8 +14,11 @@ class EmployeeRepository(BaseRepository):
     従業員
     """
 
-    def find_all(self) -> ScalarResult[EmployeeModel]:
-        stmt = select(EmployeeModel)
+    def find_all(self, **kwargs: Any) -> ScalarResult[EmployeeModel]:
+        """
+        条件を指定して従業員を全取得
+        """
+        stmt = select(EmployeeModel).filter_by(**kwargs)
         return self.session.scalars(stmt)
 
     def find_by_id(self, id: int) -> EmployeeModel | None:

@@ -1,8 +1,8 @@
 import strawberry
 
-from .common import PersonInput
+from app.types import Sex
 
-__all__ = ["ProfileInput", "EmployeeCreateInput", "EmployeeUpdateInput"]
+from .common import PersonInput
 
 
 @strawberry.input(description="")
@@ -43,3 +43,17 @@ class EmployeeUpdateInput(EmployeeInput):
     """
 
     profiles: list[ProfileInput]
+
+
+@strawberry.input(description="")
+class EmployeeFilterInput:
+    """
+    従業員のフィルタ用 input
+    """
+
+    serial_number: str | None = None
+    first_name: str | None = None
+    last_name: str | None = None
+    belong: bool | None = None
+    job_id: int | None = None
+    sex: Sex | None = None

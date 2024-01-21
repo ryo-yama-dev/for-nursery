@@ -1,7 +1,9 @@
+from typing import Any
+
 import strawberry
 
 from app.database import EmployeeModel
-from app.inputs import EmployeeCreateInput
+from app.inputs import EmployeeCreateInput, EmployeeFilterInput
 from app.repositories import EmployeeRepository
 from app.types import Employee, Job, Profile
 
@@ -27,10 +29,19 @@ class EmployeeService(BaseService):
             profiles=[Profile(**prof.to_dict()) for prof in data.profiles],
         )
 
-    def find_all(self) -> list[Employee]:
+    def find_all(self, input: EmployeeFilterInput | None = None) -> list[Employee]:
+        """
+        条件を指定して従業員を全取得
+        """
+        d_input: dict[str, Any] = {}
+        if input is not None:
+            for key, value in strawberry.asdict(input).items():
+                if value is not None:
+                    d_input[key] = value
+
         return [
             self._data_format(employee)
-            for employee in EmployeeRepository(self.session).find_all()
+            for employee in EmployeeRepository(self.session).find_all(**d_input)
         ]
 
     def find_one(self, id: int) -> Employee | None:

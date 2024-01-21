@@ -1,7 +1,7 @@
 import strawberry
 
 from app.database import create_session
-from app.inputs import RecordsQueryInput
+from app.inputs import EmployeeFilterInput, RecordsQueryInput
 from app.services import (
     ChildService,
     ClassroomService,
@@ -20,9 +20,9 @@ class Query:
             return JobService(session).find_all()
 
     @strawberry.field(description="従業員一覧取得")
-    def employees(self) -> list[Employee]:
+    def employees(self, input: EmployeeFilterInput | None = None) -> list[Employee]:
         with create_session() as session:
-            return EmployeeService(session).find_all()
+            return EmployeeService(session).find_all(input)
 
     @strawberry.field(description="従業員1件取得")
     def employee(self, id: int) -> Employee | None:

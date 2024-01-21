@@ -1,6 +1,6 @@
 from .children import ChildCreateInput, ChildUpdateInput
 from .classrooms import ClassroomCreateInput, ClassroomUpdateInput
-from .employees import EmployeeCreateInput, EmployeeUpdateInput
+from .employees import EmployeeCreateInput, EmployeeFilterInput, EmployeeUpdateInput
 from .jobs import JobCreateInput, JobUpdateInput
 from .records import (
     ChildTimelineCreateInput,
@@ -15,6 +15,7 @@ __all__ = [
     "ClassroomCreateInput",
     "ClassroomUpdateInput",
     "EmployeeCreateInput",
+    "EmployeeFilterInput",
     "EmployeeUpdateInput",
     "JobCreateInput",
     "JobUpdateInput",
