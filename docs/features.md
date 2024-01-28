@@ -2,8 +2,8 @@
 
 ## 従業員一覧・詳細表示機能
 
-- [ ] 従業員概要一覧表示
-- [ ] 従業員情報詳細表示
+- [x] 従業員概要一覧表示
+- [x] 従業員情報詳細表示
 
 ## 従業員プロフィール管理・編集機能
 
@@ -12,7 +12,7 @@
 
 ## 出退勤登録機能
 
-- [ ] 出勤登録
+- [x] 出勤登録
 - [ ] 退勤登録
 
 ## 勤務状況閲覧機能
@@ -33,6 +33,7 @@
 
 - [ ] 子供の来園登録（ワンタッチ自動登録）
 - [ ] 子供の退園登録（ワンタッチ自動登録）
+- [ ] 遠足等のための一括ステータス更新
 
 ## 集金管理機能
 
@@ -77,12 +78,6 @@
 - [x] employees_monthly
 - [ ] employee_annually
 
-### 登退園情報取得
-
-- [ ] childs_daily
-- [ ] childs_weekly
-- [ ] childs_monthly
-
 ## Mutation
 
 ### 職級操作
@@ -112,12 +107,11 @@
 ### 出退勤登録
 
 - [x] employee_record_create
-- [ ] employee_record_update
+- [x] employee_record_update
 
 ### 登退園登録
 
-- [ ] child_record_create
-- [ ] child_record_update
+- [ ] child_timeline_create
 
 ### 集金カテゴリ操作
 

@@ -9,7 +9,7 @@
 
 ### Middle Term
 
-- [ ] Front との接続
+- [x] Front との接続
 - [ ] AWS との連携
 - [ ] 認証機能
 - [ ] Pytest 実装
