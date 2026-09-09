@@ -15,66 +15,30 @@ dependencies = [
     "pydantic-settings>=2.1.0",
 ]
 
-requires-python = ">=3.11"
+requires-python = ">=3.13,<3.14"
 license = {text = "MIT"}
+[tool.ruff]
+exclude = [".venv", ".uv_cache"]
 
-[tool.pdm]
-[tool.pdm.dev-dependencies]
+[tool.ruff.lint]
+ignore = ["E501", "E203"]
+select = ["E", "F", "W", "I", "B", "DJ", "RUF", "S"]
+extend-ignore = ["RUF012"]
+external = ["DFA001"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+
+[tool.uv]
+exclude-newer = "1 week"
+
+[dependency-groups]
 dev = [
-    "black>=23.3.0",
-    "isort>=5.12.0",
-    "flake8>=6.0.0",
     "bandit[toml]>=1.7.5",
-    "pyproject-flake8>=6.0.0.post1",
-    "mdformat-gfm>=0.3.5",
-    "mypy>=1.8.0",
     "Faker>=18.13.0",
     "pytest>=7.4.0",
     "pytest-postgresql>=5.0.0",
     "devtools[pygments]>=0.11.0",
+    "ruff>=0.16.5",
+    "ty>=0.0.77",
 ]
-
-[tool.pdm.scripts]
-dev = "uvicorn src.app.main:app --reload --port 8080"
-server = "gunicorn src.app.main:app -w 4 -k uvicorn.workers.UvicornWorker"
-lint = "pflake8 src"
-isort = "isort ."
-black = "black src"
-mdformat = "mdformat ."
-format = {composite = ["black", "isort", "mdformat"]}
-seed = "src/app/database/seed.py"
-# seed = "python -c 'from src.app.common.utils.seed import seed; seed()'"
-
-[tool.mypy]
-plugins = [
-  "pydantic.mypy",
-  "sqlalchemy.ext.mypy.plugin",
-  "strawberry.ext.mypy_plugin"
-]
-
-follow_imports = "silent"
-warn_redundant_casts = true
-warn_unused_ignores = true
-disallow_any_generics = true
-check_untyped_defs = true
-no_implicit_reexport = true
-ignore_missing_imports = true
-# for strict mypy: (this is the tricky one :-))
-disallow_untyped_defs = true
-exclude = "/tests/"
-
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
-
-[tool.black]
-line-length = 88
-
-[tool.isort]
-profile = "black"
-
-[tool.flake8]
-# black に準拠
-max-line-length = 88
-
